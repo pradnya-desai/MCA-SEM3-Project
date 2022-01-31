@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar.js';
+import Navbarr from './components/Navbarr.js';
 import AboutUs from './components/AboutUs.js';
 import Footer from './components/Footer.js';
 import Home from './components/Home.js';
@@ -31,27 +31,27 @@ function App() {
 
 
   <Route exact path="/">
-  <Navbar/>
+  <Navbarr/>
     <Home/>
     <Footer/>
   </Route>
 
    <Route path="/about">
-   <Navbar/>
+   <Navbarr/>
      <AboutUs/>
      <Footer/>
    </Route>
    
 
 <Route path="/contact">
-<Navbar/>
+<Navbarr/>
      <ContactUs/>
      <Footer/>
    </Route>
   
        
    <Route path="/cart">
-      <Navbar/>
+      <Navbarr/>
      <CartFunctions/>
      <Footer/>
    </Route>
@@ -69,19 +69,19 @@ function App() {
 </Route> */}
 
 <Route path="/returnpolicy">
-<Navbar/>
+<Navbarr/>
   <ReturnPolicy/>
   <Footer/>
 </Route>
 
 <Route path="/orderguide">
-<Navbar/>
+<Navbarr/>
   <OrderGuide/>
   <Footer/>
 </Route>
 
 <Route path="/login">
-<Navbar/>
+<Navbarr/>
 <Login/>
 <Footer/>
 </Route>

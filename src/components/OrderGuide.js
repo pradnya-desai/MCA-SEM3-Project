@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from './Navbar'
+import Navbarr from './Navbarr'
 
 const OrderGuide = () => {
     return (
         <div style={{backgroundColor:"#fecacc"}}>
-            <div style={{marginTop:"-52px"}}>{Navbar}</div>
+            <div style={{marginTop:"-52px"}}>{Navbarr}</div>
             <h1 style={{paddingTop:"15%"}}>What You Need To Do?</h1>
             <div class="timeline">
   <div class="container6 left-timeline">

@@ -3,23 +3,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRupeeSign } from '@fortawesome/free-solid-svg-icons';
 const Shipping = (props) => {
 //extracting cart items from history props and storing in cartItems variable 
-const {cartItems} = props;
+var {cartItems} = props;
 
+    //creating an empty array to store cart items 
+    //iterating through cartItems and storing in cartItems array 
+    
 return (
 <div>
 
-<div>{cartItems}</div>
 
                             <div className="cart-item">
-                                {/* {cartItems.location.state.map((item) => ( 
+                                {/* {cartItems.map((item) => ( 
 
                                     <div key={item.id} className="cart-item">
                                         <div className="cart-item-image">
                                             <img src={item.image} alt=""/>
+                                            <h3>
+                                            <span>{i.id}</span>
+                                                <span>{i.name}</span>
+                                                <span>{cartItems}</span>
+
+                                            </h3>
                                             </div>
                                             </div>
                                 
+
                                 ))} */}
+                            <h3>{cartItems}</h3>
                                 </div>
                             {/* <div>
                               <img

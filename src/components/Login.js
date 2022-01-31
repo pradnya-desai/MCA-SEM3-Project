@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from './Navbar.js'
+import Navbarr from './Navbarr.js'
 import Sidebar from '../adminLogin/Sidebar.js'
 const Login = () => {
 
     return (
         <div>
-            <div style={{marginTop:"-40px"}}>{Navbar}</div>
+            <div style={{marginTop:"-40px"}}>{Navbarr}</div>
              <div className="contact-item2" style={{paddingTop:"15%"}}>
              <h1 style={{backgroundColor:"#fecacc"}}>Admin Login</h1>
 

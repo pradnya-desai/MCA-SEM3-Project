@@ -1,6 +1,6 @@
 import {React} from 'react'
 
-import Navbar from './Navbar.js'
+import Navbarr from './Navbarr.js'
 
  function Product(props){
 //   const[cakes1,setCakes1]=useState(products);
@@ -13,7 +13,7 @@ const {product,onAdd}=props;
     return (
         <div>
 
-            <div>{Navbar}</div>
+            <div>{Navbarr}</div>
 {/* <h1 style={{position:"relative",backgroundColor:"#fecacc"}}>SHOP BY CATEGORY</h1> */}
           
 <div className="occassion-container">

@@ -27,15 +27,15 @@ const Home = () => {
 
         <div className="photo-btn-grp">
         <NavLink to="/occassions-bestsellers"> <Button type="submit" variant='dark'>VIEW MORE</Button></NavLink>
-        <NavLink to="/birthday"> <Button type="submit" variant='dark'>BIRTHDAY CAKES</Button></NavLink>
+        <NavLink to="/birthday"> <Button type="submit" variant='dark' id="a1">BIRTHDAY CAKES</Button></NavLink>
         </div>
       </div>
 
       <section id="section-1">
         <div className="cake-delivery-info">
           <div className="cake-delivery-text">
-            <h1>ONLINE CAKE DELIVERY IN PUNE</h1>
-            <h2>
+            <h2>ONLINE CAKE DELIVERY IN PUNE</h2>
+            <h4>
               My healthy and hygienic cakes delivered in Pune are freshly baked
               exclusively at home and each of these cakes are deliciously baked
               to send online in Pune and can be delivered same day, night
@@ -44,19 +44,19 @@ const Home = () => {
               the cakes and confectionery items can be the best option for you.
               You can serve them during birthdays, anniversaries, and other
               special occasions.
-            </h2>
+            </h4>
           </div>
 
           <div className="shop-by-category">
-            <h1>SHOP BY CATEGORY</h1>
+            <h2>SHOP BY CATEGORY</h2>
           </div>
 
      
         </div>
         <div className="category-images"> 
-        <NavLink to="/birthday"><button>BIRTHDAYS</button></NavLink>
-        <NavLink to="/occassions-bestsellers"><button>BESTSELLERS</button></NavLink>
-        <NavLink to="/bakery"><button>BAKERY</button></NavLink>
+        <NavLink to="/birthday"><button type="button" class="btn btn-dark">BIRTHDAYS</button></NavLink>
+        <NavLink to="/occassions-bestsellers"><button type="button" class="btn btn-dark">SPECIAL DAYS</button></NavLink>
+        <NavLink to="/bakery"><button type="button" class="btn btn-dark">BAKERY</button></NavLink>
         {/* <NavLink to="/birthday"><button>OCCASSIONS</button></NavLink> */}
         </div>
 

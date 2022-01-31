@@ -195,6 +195,7 @@ function Basket(props) {
 
                             <div>
                               <h5>{item.cname}</h5>
+                              <input type="text" value={item.cname} disabled />
                             </div>
 
                             <div>
@@ -281,7 +282,7 @@ function Basket(props) {
               <input type="text" className="contact-input" required />
               <br/>
             <br/>
-              <button onClick="">Get OTP</button>
+              {/* <button onClick="">Get OTP</button> */}
 
               <label>Email</label>
             </div>
@@ -378,19 +379,23 @@ function Basket(props) {
                   
                     <div class="modal-footer">
                     {/* <NavLink to="/shipping">  */}
+                    {deliveryOption==="Pickup" && (
+
                      <button
                         class="btn btn-dark"
 //                        data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                         data-bs-dismiss="modal"
-                      // onClick={()=>{ props.history.push({
-                      //   pathname: '/shipping',
-                      //   state: {
-                      //     cartItems: cartItems,
-                      //   } } ) } }
+                     onClick={()=>{ 
+                     <Shipping cartItems={cartItems}> 
+                     </Shipping>
+                    props.history.push("/shipping");
+                    }}
                       >
                        <b> Continue Shipping <FontAwesomeIcon icon={faShoppingBag}/></b>
+                      
                       </button>
+                    )}
                       {/* </NavLink> */}
                     </div>
                   </div>

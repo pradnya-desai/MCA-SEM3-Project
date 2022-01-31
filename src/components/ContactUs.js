@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar.js";
+import Navbarr from "./Navbarr.js";
 import Footer from "./Footer.js";
 
 const ContactUs = () => {
   return (
     <div>
-       <div style={{ marginTop: "-530px" }}>{Navbar}</div> 
+       <div style={{ marginTop: "-530px" }}>{Navbarr}</div> 
 
         
 

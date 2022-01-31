@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Product from "./Product.js";
+import  Shipping from "./Shipping.js";
 import { Button } from "react-bootstrap";
 // import "../App.css";
 //data will come via props to this main.js file from Cartfunctions.js as we are extracting the products from the array in cartFunctions.js
@@ -40,7 +41,7 @@ export default function Main(props) {
             <div>
              
               <Product key={product.id} product={product} onAdd={onAdd}></Product>
-            
+            <Shipping key={product.id} product={product} onAdd={onAdd}></Shipping>
           </div>
         ))}
       </div>

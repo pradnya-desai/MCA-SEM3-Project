@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import Navbar from "./Navbar.js";
+import Navbarr from "./Navbarr.js";
 export default function Header(props) {
   const { countCartItems } = props;
   return (

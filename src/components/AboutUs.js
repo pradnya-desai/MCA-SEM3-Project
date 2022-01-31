@@ -1,11 +1,11 @@
 import React from "react";
 import Footer from "./Footer.js";
-import Navbar from "./Navbar.js";
+import Navbarr from "./Navbarr.js";
 
 const AboutUs = () => {
   return (
     <div>
-      <div style={{ marginTop: "-40px" }}>{Navbar}</div>
+      <div style={{ marginTop: "-40px" }}>{Navbarr}</div>
 <div className="about-text">
   <div className="about-item-1">
   <h1 style={{backgroundColor:"#fecacc"}}>Baking Your Ideas To Life</h1>

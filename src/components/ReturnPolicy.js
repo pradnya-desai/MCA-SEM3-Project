@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "./Navbar.js";
+import Navbarr from "./Navbarr.js";
 const ReturnPolicy = () => {
   return (
     <div>
-      <div style={{marginTop:"-40px"}}>{Navbar}</div>
+      <div style={{marginTop:"-40px"}}>{Navbarr}</div>
       <div className="return-policy-container">
         <div style={{width:"100%"}} className="return-policy-1">
           <h1 style={{backgroundColor:"#fecacc"}}>Return Policy</h1>

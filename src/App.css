@@ -16,13 +16,40 @@ height: auto;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.navbar-1{
+
+a.nav-link{
+margin-left:7rem;
+width: 11rem;
+color: white;
+}
+.nav-item a{
+  color: whitesmoke;
+  font-weight: bolder;
+  font-size: 1.4rem;
+}
+a.navbar-brand{
+  color:whitesmoke
+}
+
+.navbar-light .navbar-toggler{
+  color: whitesmoke;
+}
+
+.navbar-light .navbar-toggler-icon{
+  background-image: url("C:\Users\Pradnya\Desktop\cake-ordering-ui\src\images\hamburgerMenu.png");
+}
+@media (max-width:460px) {
+  .photo-btn-grp { 
+display: flex;
+  }
+}
+/* .navbar-1{
 height:200px;
 width: 100%;
 background-color: #ffffff;
 margin-top:30px;
-}
-.social-icons-1{
+} */
+/* .social-icons-1{
   height: 50px;
   width: 100%;
   background-color: whitesmoke;
@@ -47,14 +74,14 @@ li:hover,.photo-btn-grp button:hover{
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
   opacity: 0.6;
-}
+} */
 
 
 /* .shop-by-category-img img:hover{
   -webkit-transform: scale(0.9);
   transform: scale(0.9);
 } */
-.menus-1{
+/* .menus-1{
   height: 140px;
   width: 100%;
 }
@@ -75,7 +102,7 @@ margin-top: 4%;
  padding-left: 2%;
  float: left;
  cursor: pointer;
-}
+} */
 
 .discount-bar p{
 font-size: 25px;
@@ -103,8 +130,9 @@ margin-top: -40px;
 
 
  .photo-btn-grp button{
+   margin-top: -8rem;
    cursor: pointer;
- margin:10px;
+   position: relative;
    background-color: black;
    color: white;
    width: 13.7rem;
@@ -137,10 +165,11 @@ justify-content: center;
 
 
 .category-images{
-  display: flex;
+
+  /* display: flex; */
   height: 400px;
-  justify-content: center;
-margin-left: 10px;
+  /* justify-content: center; */
+/* margin-left: 10px; */
 }
 
 .category-images button{
@@ -148,16 +177,18 @@ margin-left: 10px;
   margin:10px;
     background-color: black;
     color: white;
-    width: 395px;
-    height: 400px;
+    width: 350px;
+    height: 300px;
     font-size: 25px;
     border: none;
     transition-duration: 0.5s;
  transition-property: transform;
  transform: perspective(3px) translateZ(0);
-text-decoration: underline;
+ font-weight: bolder;
 text-align:center;
-/* background-image: url("./images/cakes/black-forest-round-cake.jpg"); */
+
+background-image: url("https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmlydGhkYXklMjBjYWtlc3xlbnwwfHwwfHw%3D&w=1000&q=80");
+
 }
 
 
