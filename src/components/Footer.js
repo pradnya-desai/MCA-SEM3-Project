@@ -19,7 +19,7 @@ const Footer = () => {
        <div class="upper">
          <div class="topic">About us</div>
          <p>Being a home baker my goal is to provide lavishing and tasty 
-           cakes to all my customers with utmost affection and love.</p>
+           cakes to all my customers with utmost affection and love...<NavLink to="/about">Read More</NavLink></p>
        </div>
        <div class="lower">
          <div class="topic">Contact us</div>
@@ -42,10 +42,9 @@ const Footer = () => {
      
    
      <div class="right box">
-       <div class="topic">Subscribe us</div>
-       <form action="#">
-         <input type="text" placeholder="Enter email address"/>
-         <input type="submit" name="" value="Send"/>
+       <form method='POST'>
+         {/* <input type="text" placeholder="Enter email address"/>
+         <input type="submit" name="" value="Send"/> */}
          <div class="media-icons">
            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
            <a href="#"><FontAwesomeIcon icon={faEnvelope}/></a>

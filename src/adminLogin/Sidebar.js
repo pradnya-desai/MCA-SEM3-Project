@@ -7,8 +7,55 @@ const Sidebar = () => {
     return (
    
         <div>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <div class="container-fluid">
+    {/* <a class="navbar-brand" href="#">Go to site</a> */}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" style={{width:"6.5rem", fontSize:"1.3rem"}} aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style={{width:"10.8rem", fontSize:"1.3rem"}} href="#">Respond to Queries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  style={{width:"6.5rem", fontSize:"1.3rem"}} href="#">Sales/Profit</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu"  aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
 
-<Nav variant="pills" activeKey="1" >
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu" style={{width:"6.5rem", fontSize:"1.3rem"}} aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style={{width:"6.5rem", fontSize:"1.3rem"}} href="#">Change Password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style={{width:"6.5rem", fontSize:"1.3rem"}} href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{/* <Nav variant="pills" activeKey="1" >
       <Nav.Item>
         <Nav.Link eventKey="1">
        <NavLink to="/dashboard"> Dashboard</NavLink>
@@ -48,7 +95,7 @@ const Sidebar = () => {
         Logout
         </Nav.Link>
       </Nav.Item>
-    </Nav>
+    </Nav> */}
 
 
         </div>

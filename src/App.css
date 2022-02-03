@@ -248,7 +248,7 @@ footer{
  
   bottom: 0;
   left: 0;
-  background: whitesmoke;
+  background: black;
   margin-top: 40px;
 }
 footer .content{
@@ -259,7 +259,7 @@ footer .content{
   justify-content: space-between;
 }
 footer .content p,a{
-  color: black;
+  color: whitesmoke;
   text-decoration: none;
 }
 footer .content .box{
@@ -270,7 +270,7 @@ footer .content .box{
 footer .content .topic{
   font-size: 22px;
   font-weight: 600;
-  color: black;
+  color: whitesmoke;
   margin-bottom: 16px;
   
 
@@ -293,11 +293,11 @@ footer .content .middle a{
   line-height: 32px;
   text-decoration: none;
 }
-footer .content .right input[type="text"]{
+/* footer .content .right input[type="text"]{
   height: 45px;
   width: 100%;
   outline: none;
-  color: black;
+  color: whitesmoke;
   background: white;
   border-radius: 5px;
   padding-left: 10px;
@@ -308,8 +308,8 @@ footer .content .right input[type="submit"]{
   height: 42px;
   width: 100%;
   font-size: 18px;
-  color: white;
-  background: black;
+  color: black;
+  background:whitesmoke;
   outline: none;
 
   letter-spacing: 1px;
@@ -317,11 +317,11 @@ footer .content .right input[type="submit"]{
   margin-top: 12px;
   border: 2px solid black;
   transition: all 0.3s ease-in-out;
-}
-.content .right input[type="submit"]:hover{
+} */
+/* .content .right input[type="submit"]:hover{
   background: none;
   color:  black;
-}
+} */
 footer .content .media-icons a{
   font-size: 16px;
   height: 45px;
@@ -330,18 +330,18 @@ footer .content .media-icons a{
   text-align: center;
   line-height: 43px;
   border-radius: 5px;
-  border: 2px solid #222222;
+  border: 2px solid whitesmoke;
   margin: 30px 5px 0 0;
 
   transition: all 0.3s ease;
 }
 .content .media-icons a:hover{
-  border-color: #eb2f06;
+  border-color: #fecacc;
 }
 footer .bottom{
   width: 100%;
   text-align: center;
-  color: black;
+  color: whitesmoke;
   padding: 0 40px 5px 0;
 }
 footer .bottom a{
