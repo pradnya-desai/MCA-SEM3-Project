@@ -18,10 +18,11 @@ import CartFunctions from './components/CartFunctions.js';
 import Pickup from './components/Pickup.js';
 import CustomerInformation from './components/CustomerInformation';
 import Shipping from './components/Shipping';
+import CustomerEnquiries from './adminLogin/CustomerEnquiries';
 function App() {
 
   //get the cart items from local storage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  //const cartItems = JSON.parse(localStorage.getItem('cartItems'));
 
   
   
@@ -112,6 +113,12 @@ function App() {
 <Sidebar/>
   <Sales/>
 </Route>
+
+<Route path="/customerenquiries">
+<Sidebar/>
+<CustomerEnquiries/>
+</Route>
+
 
 <Route path="/customerInfo">
   {/* <Navbar/> */}
