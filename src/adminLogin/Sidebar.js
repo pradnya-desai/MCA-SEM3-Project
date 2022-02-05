@@ -44,11 +44,11 @@ const Sidebar = () => {
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Change Password</a>
+          <NavLink to="/changepassword"><a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Change Password</a></NavLink>
         </li>
         
       <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Logout</a>
+         <NavLink to="/"> <a class="nav-link active" aria-current="page" href="#">Logout</a></NavLink>
         </li>
      
       </ul>
