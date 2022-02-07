@@ -7,7 +7,7 @@ const CustomerEnquiries = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-const[enquiry,setEnquiries]=useState([])
+ const[enquiry,setEnquiries]=useState([])
         useEffect(() => {
             (async () => {
               var userData;
@@ -23,7 +23,8 @@ const[enquiry,setEnquiries]=useState([])
                 userData = [];
               }
               // setAllUser(userData);
-              setEnquiries(userData.result.enquiries);
+               setEnquiries(userData.result.enquiries);
+              
             })();
           }, []);
 
@@ -34,55 +35,23 @@ const[enquiry,setEnquiries]=useState([])
             const filteredUsers = enquiry.filter(user => (`${user.cname} ${user.email}`.toLowerCase().includes(value)));
             setEnquiries(filteredUsers);
           }
-          const sendEmail = (e) => {
-            e.preventDefault();
+          // const sendEmail = (e) => {
+          //   e.preventDefault();
         
-            emailjs.sendForm('gmail', 'template_3s7slla',e.target, 'user_wqU06aNrWMVEJa5fyD7F1')
-              .then((result) => {
-                  console.log(result.text);
-              }, (error) => {
-                  console.log(error.text);
-              });
-          };
+          //   emailjs.sendForm('gmail', 'template_3s7slla',e.target, 'user_wqU06aNrWMVEJa5fyD7F1')
+          //     .then((result) => {
+          //         console.log(result.text);
+          //     }, (error) => {
+          //         console.log(error.text);
+          //     });
+          // };
 
     return (
         <div>
         <h1>Customer Enquiries</h1>
     
   <br/><br/>
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form onSubmit={sendEmail} >
-      <select>
-       {/* { enquiry.map(enquiry => (
-
-    <option name='name' >{enquiry.cname}</option>
-    ))} */}
-</select>
-<select>
-{ enquiry.map(enquiry => (
-    <option name='email'>{enquiry.email}</option>
-    ))}
-</select>
-       
-<input type="text" name="message" placeholder="message" />
-    
-</form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
- 
+  
 
         {/* <Button type='submit' onSubmit={onSubmit} style={{height:"4rem", fontSize:"1.2rem"}} variant="primary">Show All Enquiries</Button> */}
 <input type="search"  onInput={filterData} placeholder="search customer" />
@@ -111,7 +80,39 @@ const[enquiry,setEnquiries]=useState([])
         </tbody>
         </table>
 
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form >
+      <select>
+       {/* { enquiry.map(enquiry => (
 
+    <option name='name' >{enquiry.cname}</option>
+    ))} */}
+</select>
+<select>
+{ enquiry.map(enquiry => (
+    <option name='email'>{enquiry.email}</option>
+    ))}
+</select>
+       
+<input type="text" name="message" placeholder="message" />
+    
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
 
         </div>
     );

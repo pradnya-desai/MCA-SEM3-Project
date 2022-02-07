@@ -72,7 +72,7 @@ const onSubmit= async (event) => {
             </div>
         </div> */}
         <div class="col-xs-12">
-            <div class="btn-lrg submit-btn"><button type='submit'>Change Password</button></div>
+        <button type='submit' style={{backgroundColor:"black", border:"none"}}> <div class="btn-lrg submit-btn">Change Password</div></button>
         </div>
 </div>
 </form>

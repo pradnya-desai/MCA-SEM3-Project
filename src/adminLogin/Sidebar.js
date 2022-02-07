@@ -26,10 +26,11 @@ const Sidebar = () => {
            Cakes
           </a>
           <ul class="dropdown-menu active" aria-labelledby="navbarDropdown">
-            <li><a style={{color:"black"}} class="dropdown-item" href="#">Action</a></li>
-            <li><a style={{color:"black"}} class="dropdown-item" href="#">Another action</a></li>
+            <li><NavLink to="/addcake"><a style={{color:"black"}} class="dropdown-item" href="#">Add Cake</a></NavLink></li>
             <li><hr class="dropdown-divider"/></li>
-            <li><a style={{color:"black"}} class="dropdown-item" href="#">Something else here</a></li>
+
+            <li><NavLink to="/manageCake"><a style={{color:"black"}} class="dropdown-item" href="#">Edit Cake</a></NavLink></li>
+            {/* <li><a style={{color:"black"}} class="dropdown-item" href="#">Something else here</a></li> */}
           </ul>
         </li>
         <li class="nav-item dropdown">
