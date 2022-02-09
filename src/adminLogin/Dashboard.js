@@ -4,8 +4,33 @@ import { faBook, faBookReader, faChartBar, faDigitalTachograph, faGraduationCap,
 import React from 'react'
 import { faDelicious } from '@fortawesome/free-brands-svg-icons'
 import Sidebar from './Sidebar.js'
-
+import { useState,useEffect } from 'react'
 const Dashboard = () => {
+
+const [enquiryCount,setEnquiryCount]=useState([]);
+
+useEffect(() => {
+	(async () => {
+	  var userData;
+	  try {
+		const response = await fetch("/enquiry/getEnquiryCount");
+		userData = await response.json();
+
+		//display all the enquiries in the table 
+		console.log(userData);
+
+	  } catch (error) {
+		console.log(error);
+		userData = [];
+	  }
+	  // setAllUser(userData);
+	   setEnquiryCount(userData.result.enquiriesCount);
+	  
+	})();
+  }, []);
+
+
+
     return (
         <div>
            {/* <div className='gradient-cards'>
@@ -25,9 +50,11 @@ const Dashboard = () => {
            </div> */}
 		   {/* <div>{Sidebar}</div> */}
 <div class="card-holder">
-	<section class="card card--01">
+	<section class="card-count card--01">
 		<h1 class="card__heading">Orders</h1>
 		<p class="card__text">
+		
+		
 			With a funny blurry drop shadow
 		</p>
 	</section>
@@ -35,26 +62,26 @@ const Dashboard = () => {
 </div>
 
 <div class="card-holder">
-	<section class="card card--02">
+	<section class="card-count card--03">
 		<h1 class="card__heading">Deliveries</h1>
 		<p class="card__text">
 			With a funny blurry drop shadow
 		</p>
 	</section>
-	<span class="card-shadow card-shadow--02"></span>
+	<span class="card-shadow card-shadow--03"></span>
 </div>
 <div class="card-holder">
-	<section class="card card--02">
-		<h1 class="card__heading">Subscribers</h1>
+	<section class="card-count card--04">
+		<h1 class="card__heading">Enquiries</h1>
 		<p class="card__text">
-			With a funny blurry drop shadow
+			{enquiryCount}
 		</p>
 	</section>
 	<span class="card-shadow card-shadow--02"></span>
 </div>
 <div class="card-holder">
-	<section class="card card--02">
-		<h1 class="card__heading">Sales</h1>
+	<section class="card-count card--02">
+		<h1 class="card__heading">Profit</h1>
 		<p class="card__text">
 			With a funny blurry drop shadow
 		</p>

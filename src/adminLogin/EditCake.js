@@ -38,15 +38,25 @@ setId(data[0]._id);
 }
 
 
-function deleteCake(_id) {
-    fetch(`/cake/deleteCake/${_id}`, {
-      method: 'DELETE'
-    }).then((result) => {
-      result.json().then((resp) => {
-        console.warn(resp)
-        getData()
-      })
+async function deleteCake(_id) {
+   const response=await fetch(`/cake/deleteCake/${_id}`, {
+      method: 'DELETE',
+
     })
+   const result=await response.json();
+   getData();
+ if(result.result==null||result.result==""||result.result==undefined){
+   alert("Cake not deleted");
+ }
+  else{
+    alert("Cake deleted");
+  }
+    // .then((result) => {
+    //   result.json().then((resp) => {
+    //     console.warn(resp)
+    //     getData()
+    //   })
+    // })
   }
   function selectCake(id)
   {
@@ -96,11 +106,13 @@ return(
  <thead>
 
           <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Cake Name</th>
-          <th scope="col">Cake Image</th>
-          <th scope="col">Cake Price</th>
-          <th scope="col">Cake Category</th>
+          <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">ID</th>
+          <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Cake Name</th>
+          <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}}scope="col">Cake Image</th>
+          <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}}scope="col">Cake Price</th>
+          <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}}scope="col">Cake Category</th>
+          <th style={{ color:"#fecacc",backgroundColor:"black"}}scope="col">Activity</th>
+          <th style={{ color:"#fecacc",backgroundColor:"black"}}scope="col"></th>
           </tr>
           </thead>
 
@@ -108,15 +120,15 @@ return(
           {
             cakes.map((item, i) =>
               <tr key={i}>
-                <td>{item.id}</td>
-                <td>{item.cname}</td>
-                <td>{item.image}</td>
-                <td>{item.price}</td>
-                <td>{item.category}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.id}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.cname}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.image}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.price}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.category}</td>
                 
 
-                <td><button onClick={() => deleteCake(item.id)}>Delete</button></td>
-                <td><button onClick={() => selectCake(item.id)}>Update</button></td>
+                <td><button className="btn btn-danger" onClick={() => deleteCake(item._id)}>Delete</button></td>
+                <td><button className="btn btn-info" onClick={() => selectCake(item.id)}>Update</button></td>
 
               </tr>
             )
@@ -127,12 +139,16 @@ return(
 
         <br/><br/>
         <br/><br/>
+        <div className="container">
+        <div className="row input-container">
         <input type="text" value={_id} onChange={(e) =>{setId(e.target.value)}} />
-        <br/> <input type="text" value={cname} onChange={(e)=>{setName(e.target.value)}} /> <br /><br />
+        <br/><br/> <input type="text" value={cname} onChange={(e)=>{setName(e.target.value)}} /> <br /><br />
         <input type="text" value={price} onChange={(e)=>{setPrice(e.target.value)}} /> <br /><br />
         <input type="text" value={category}  onChange={(e)=>{setCategory(e.target.value)}} /> <br /><br />
         <input type="text" value={image} onChange={(e)=>{setImage(e.target.value)}} /> <br /><br />
-        <button onClick={updateCake} >Update User</button>  
+        </div>
+        </div>
+        <button className="btn btn-success" onClick={updateCake} >Update Cake</button>  
       </div>
      </div>
 )
