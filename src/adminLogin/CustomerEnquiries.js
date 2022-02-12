@@ -1,12 +1,59 @@
 import react, { useState,useEffect } from 'react';
 import { Button ,Modal,Form, FormControl, InputGroup} from 'react-bootstrap';
 import emailjs from 'emailjs-com';
+import $ from 'jquery';
+
 const CustomerEnquiries = () => {
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+const[emailEnquiry,setEmailEnquiry]=useState({
+  email:''
+});
+
+
+let name, value;
+const handleInputChange = (e) => {
+  console.log(e);
+  name = e.target.name;
+  value = e.target.value;
+  setEmailEnquiry({...emailEnquiry,[name]:value});
+  console.log(emailEnquiry);
+}
+var result;
+function GetSelectedText(){
+  var e = document.getElementById("country");
+   result = e.options[e.selectedIndex].text;
+  
+  document.getElementById("result").innerHTML = result;
+}
+
+
+const sendEmail=async(e)=>{
+  e.preventDefault();
+  const {email}=emailEnquiry;
+  const response=await fetch('/enquiry/sendEmail',{
+    method:'POST',
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      email
+    })
+  });
+  const result=await response.json();
+  console.log(result);
+  if(result.result==null || result.result=="" || result.result==undefined){
+    alert('Invalid Credentials');
+  }
+  else{
+    alert('Email Sent Successfully');
+  }
+}
+
  const[enquiry,setEnquiries]=useState([])
         useEffect(() => {
             (async () => {
@@ -46,6 +93,8 @@ const CustomerEnquiries = () => {
           //     });
           // };
 
+
+
     return (
         <div>
         <h1>Customer Enquiries</h1>
@@ -81,6 +130,7 @@ const CustomerEnquiries = () => {
         </table>
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form method='post' onSubmit={sendEmail}>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -88,29 +138,38 @@ const CustomerEnquiries = () => {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form >
-      <select>
+    
+      {/* <select> */}
        {/* { enquiry.map(enquiry => (
 
     <option name='name' >{enquiry.cname}</option>
     ))} */}
+{/* </select> */}
+
+
+
+<select id="country" onChange={GetSelectedText}>
+{enquiry.map(enquiry => (
+    <option name='email' value={emailEnquiry.email} onChange={handleInputChange} >{enquiry.email}</option>
+))
+}
 </select>
-<select>
-{ enquiry.map(enquiry => (
-    <option name='email'>{enquiry.email}</option>
-    ))}
-</select>
-       
-<input type="text" name="message" placeholder="message" />
-    
-</form>
+{/* <input type="text" name='email' value={emailEnquiry.email} disabled onChange={handleInputChange} /> */}
+    <input type="textbox"  name='email' value={emailEnquiry.email}  onChange={handleInputChange} />
+<span id='result' ></span>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="submit" class="btn btn-primary">Send Mail</button>
+        
       </div>
     </div>
   </div>
+  </form>
+  {/* <button onClick={GetSelectedText} class="btn btn-primary">Get Selected Text</button> */}
+		
 </div>
  
 

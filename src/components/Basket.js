@@ -5,6 +5,14 @@ import {
   faMinus,
   faShoppingBag,
   faRupeeSign,
+  faMoneyBill,
+  faMoneyBillWave,
+  faMoneyBillWaveAlt,
+  faTruckMoving,
+  faTruckLoading,
+  faTruckPickup,
+  faLuggageCart,
+  faShoppingBasket
 } from "@fortawesome/free-solid-svg-icons";
 import Select from "react-select";
 import { useState } from "react";
@@ -33,6 +41,14 @@ function Basket(props) {
   const deliveryOptionChange = (e) => {
     setOption(e.label);
   };
+  var n1
+  var n2
+  function sync()
+{
+   n1 = document.getElementById('n1');
+   n2 = document.getElementById('n2');
+  n2.value = n1.value;
+}
   return (
     <section id="cart-section">
       <aside>
@@ -225,10 +241,10 @@ function Basket(props) {
                           </div>
                         </div>
                         <div className="row">
-                           <div className="col-1 text-right">
+                           {/* <div className="col-1 text-right">
                 <FontAwesomeIcon icon={faRupeeSign} />{" "}
                 {shippingPrice.toFixed(2)}
-                        </div>     
+                        </div>      */}
               
                            
                  {deliveryOption==="Home Delivery" && (
@@ -269,17 +285,20 @@ function Basket(props) {
                             </strong>
                           </div>
                         </div>
+                        <br/>
+                        <hr/>
                         <div class="row input-container">
+                          <h5>Enter The Details Below To Continue Shipping</h5>
           <div class="col-xs-12">
             <div class="styled-input1 wide">
-              <input type="text" name="uname" className="contact-input" required />
+              <input type="text" name="n1" id="n1"  className="contact-input" required />
               <label>Name</label>
             </div>
           </div>
           <div class="col-md-6 col-sm-12">
             <div class="styled-input1">
 
-              <input type="text" className="contact-input" required />
+              <input type="text" disabled  name="email" className="contact-input"/>
               <br/>
             <br/>
               {/* <button onClick="">Get OTP</button> */}
@@ -370,29 +389,23 @@ function Basket(props) {
                      
                     </div> 
 
-
- <div className="modal-body">
-
-
-</div>
-
                   
                     <div class="modal-footer">
                     {/* <NavLink to="/shipping">  */}
-                    {deliveryOption==="Pickup" && (
+                    {deliveryOption && (
 
                      <button
                         class="btn btn-dark"
-//                        data-bs-target="#exampleModalToggle2"
+                    data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                         data-bs-dismiss="modal"
-                     onClick={()=>{ 
-                     <Shipping cartItems={cartItems}> 
-                     </Shipping>
-                    props.history.push("/shipping");
-                    }}
+                    //  onClick={()=>{ 
+                    //  <Shipping cartItems={cartItems}> 
+                    //  </Shipping>
+                    // props.history.push("/shipping");
+                    // }}
                       >
-                       <b> Continue Shipping <FontAwesomeIcon icon={faShoppingBag}/></b>
+                       <b> Continue To Place Order <FontAwesomeIcon icon={faShoppingBag}/></b>
                       
                       </button>
                     )}
@@ -402,7 +415,7 @@ function Basket(props) {
                 </div>
               </div>
 
-             {/*  <div
+               <div
                 class="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
@@ -413,7 +426,7 @@ function Basket(props) {
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalToggleLabel2">
-                        Modal 2
+                       Shipping Page
                       </h5>
                       <button
                         type="button"
@@ -423,21 +436,124 @@ function Basket(props) {
                       ></button>
                     </div>
                     <div class="modal-body">
-                      Hide this modal and show the first with the button below.
+                     <h4>Your Order Details</h4>
+                     {cartItems.map((item) => (
+                          <div key={item.id} className="cart-container">
+                            <div>
+                              <img
+                                src={item.image}
+                                style={{ width: "200px" }}
+                              />
+                            </div>
+
+                            <div>
+                              <h5>{item.cname}</h5>
+                              <input type="text" value={item.cname} disabled />
+                            </div>
+
+                            <div>
+                              <h5>
+                                {" "}
+                                <FontAwesomeIcon icon={faRupeeSign} />
+                                {item.price}
+                              </h5>
+                            </div>
+
+                            <div>
+                              <h5>x {item.qty}</h5>
+                            </div>
+                          </div>
+                        ))}
+
+<hr></hr>
+                        <div>Items Price</div>
+                        <div>
+                          <FontAwesomeIcon icon={faRupeeSign} /> {itemsPrice}
+                        </div>
+                        <div className="row">
+                          <div className="col-2">Tax Price</div>
+                          <div className="col-1 text-right">
+                            <FontAwesomeIcon icon={faRupeeSign} />{" "}
+                            {taxPrice.toFixed(2)}
+                          </div>
+                        </div>
+                        <div className="row">
+                           {/* <div className="col-1 text-right">
+                <FontAwesomeIcon icon={faRupeeSign} />{" "}
+                {shippingPrice.toFixed(2)}
+                        </div>      */}
+              
+                           
+                 {deliveryOption==="Home Delivery" && (
+                            <div className="row">
+                              <div className="col-2"> Shipping Price</div>
+                              <div className="col-1 text-right">
+                                <FontAwesomeIcon icon={faRupeeSign} />{" "}
+                                {shippingPrice.toFixed(2)}
+                              </div>
+                            </div>
+                                 )
+                                 
+                                 }
+
+
+                                  {deliveryOption==="Pickup" && (
+                            <div className="row">
+                              <div className="col-2"> Pickup Price</div>
+                              <div className="col-1 text-right">
+                                <FontAwesomeIcon icon={faRupeeSign} />{" "}
+                                {shippingPrice * 0}
+                                    </div>
+                                    </div>
+                                  ) 
+                                  }
+
+                                      
+                              
+                        </div>
+                                         <div className="row">
+                          <div className="col-2">
+                            <strong>Total Price</strong>
+                          </div>
+                          <div className="col-1 text-right">
+                            <strong>
+                              <FontAwesomeIcon icon={faRupeeSign} />{" "}
+                              {totalPrice.toFixed(2)}
+                            </strong>
+                          </div>
+                        </div>
+                        <br/>
+                        <hr/>
+
                     </div>
+                   
+                    <label><input type="checkbox" id="custInfo" onClick={sync}  id="fluency" />Click Here If the Shipping Address and Other Info entered on the previous page is same</label>
+                    
+                    <input type="text" name="n2" id="n2" disabled />
+                
                     <div class="modal-footer">
-                      <button
-                        class="btn btn-primary"
-                        data-bs-target="#exampleModalToggle"
+
+                      <button class="btn btn-dark" data-bs-target="#exampleModalToggle"
                         data-bs-toggle="modal"
-                        data-bs-dismiss="modal"
+                        data-bs-dismiss="modal">
+                          Go Back To Shipping
+                        </button>
+                      <button
+                        class="btn btn-dark"
+                       
                       >
-                        Back to first
-                      </button> */}
-                    {/* </div> */}
-                  {/* </div> */}
-                {/* </div> */}
-              {/* </div> */}
+                       Place Order <FontAwesomeIcon icon={faShoppingBasket}/>
+                      </button> 
+                     
+                    </div>
+                  
+
+                  </div>
+
+                </div>
+              </div>
+            
+
             </div>
           </>
         )}

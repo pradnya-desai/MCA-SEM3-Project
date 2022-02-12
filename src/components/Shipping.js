@@ -12,7 +12,7 @@ return (
 <div>
 
 
-                            <div className="cart-item">
+                            {/* <div className="cart-item"> */}
                                 {/* {cartItems.map((item) => ( 
 
                                     <div key={item.id} className="cart-item">
@@ -29,8 +29,25 @@ return (
                                 
 
                                 ))} */}
-                            <h3>{cartItems}</h3>
-                                </div>
+                            {/* <h3>{
+cartItems.map((item) => (
+
+    <div key={item.id} className="cart-item">
+        <div className="cart-item-image">
+            <img src={item.image} alt=""/>
+            <h3>
+            <span>{item.id}</span>
+                <span>{item.name}</span>
+                <span>{item.quantity}</span>
+                <span>{item.price}</span>
+                <span>{item.price * item.quantity}</span>
+            </h3>
+            </div>
+            </div>
+
+ )) }
+           </h3>
+                                </div> */}
                             {/* <div>
                               <img
                                 src={item.image}
