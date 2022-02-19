@@ -8,7 +8,7 @@ import { useState,useEffect } from 'react'
 const Dashboard = () => {
 
 const [enquiryCount,setEnquiryCount]=useState([]);
-
+const[cakeCount,setCakeCount]=useState([]);
 useEffect(() => {
 	(async () => {
 	  var userData;
@@ -29,6 +29,25 @@ useEffect(() => {
 	})();
   }, []);
 
+  useEffect(() => {
+	(async () => {
+	  var cakeData;
+	  try {
+		const response = await fetch("/cake/getCakeCount");
+		cakeData = await response.json();
+
+		//display all the enquiries in the table 
+		console.log(cakeData);
+
+	  } catch (error) {
+		console.log(error);
+		cakeData = [];
+	  }
+	  // setAllUser(userData);
+	  setCakeCount(cakeData.result.cakesCount);
+	  
+	})();
+  }, []);
 
 
     return (
@@ -87,6 +106,15 @@ useEffect(() => {
 		</p>
 	</section>
 	<span class="card-shadow card-shadow--02"></span>
+</div>
+<div class="card-holder">
+	<section class="card-count card--05">
+		<h1 class="card__heading">Cakes for Sale</h1>
+		<p class="card__text">
+{cakeCount}
+</p>
+	</section>
+	<span class="card-shadow card-shadow--05"></span>
 </div>
         </div>
     )

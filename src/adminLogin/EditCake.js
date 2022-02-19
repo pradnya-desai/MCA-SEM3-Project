@@ -120,9 +120,9 @@ return(
           {
             cakes.map((item, i) =>
               <tr key={i}>
-                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.id}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item._id}</td>
                 <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.cname}</td>
-                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.image}</td>
+                <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}><img width="20%" height="10%" src={item.image}/></td>
                 <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.price}</td>
                 <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{item.category}</td>
                 

@@ -107,6 +107,7 @@ function App() {
 </Route>
 
 <Route path="/addcake">
+  <Sidebar/>
   <AddCake/>
    </Route>
 

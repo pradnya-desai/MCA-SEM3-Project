@@ -855,6 +855,9 @@ background-color: #fecacc;
 .card--04{
   background-image:linear-gradient(to right, #93291E, #ED213A); 
 }
+.card--05{
+  background-image:linear-gradient(to right,#fc5296 ,  #f67092 ); 
+}
 .card__heading {
   font-size: 13px;
   font-weight: bold;
@@ -1000,3 +1003,36 @@ font-weight: bolder;
   width: 50%;
 } */
 
+.shipping-arts-and-dogs{
+  padding: 0;
+  border: 1px solid black;
+}
+
+.shipping-germany{
+  padding: 0 !important;
+}
+
+.shipping-germany > div{
+  position: relative;
+  font-size: 16px;
+  display: block;
+  height: 60px;
+  line-height: 24px;
+  border: 1px solid black;
+}
+
+.shipping-germany > div span{
+  display: block;
+  padding-top: 18px;
+  padding-left: 9px;
+}
+
+.otp-field {
+  width: 38px;
+  margin-right: 40px;
+  padding-left: 12px;
+  height: 40px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
