@@ -26,6 +26,11 @@ var price = cartItems.map((x) => x.price);
   console.log(price);
 var qty = cartItems.map((x) => x.qty);
 
+var cakeDetails =[];
+for(var i=0;i<cname.length;i++)
+{
+  cakeDetails.push({cakeName:cname[i],cakePrice:price[i],cakeQuantity:qty[i]});
+}
 
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const taxPrice = itemsPrice * 0.14;
@@ -326,12 +331,7 @@ const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=custome
       
 
 
-     cakeDetails:[{
-'cakeName':`${cname}`,
-'cakePrice':`${price}`,
-'cakeQuantity':`${qty}`
-        
-}],
+     'cakeDetails':cakeDetails,
 
       'allItemsPrice':itemsPrice,
       'totalOrderedProducts':cartItems.length,

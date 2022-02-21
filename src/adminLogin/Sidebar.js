@@ -38,7 +38,7 @@ const Sidebar = () => {
          Orders
           </a>
           <ul class="dropdown-menu active" aria-labelledby="navbarDropdown">
-            <li><a style={{color:"black"}} class="dropdown-item" href="#">Action</a></li>
+            <li><NavLink to="/orders"><a style={{color:"black"}} class="dropdown-item" href="#">Show Orders</a></NavLink></li>
             <li><a  style={{color:"black"}} class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a style={{color:"black"}} class="dropdown-item" href="#">Something else here</a></li>

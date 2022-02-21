@@ -20,6 +20,7 @@ import CustomerInformation from './components/CustomerInformation';
 import Shipping from './components/Shipping';
 import CustomerEnquiries from './adminLogin/CustomerEnquiries';
 import EditCake from './adminLogin/EditCake.js';
+import Orders from './adminLogin/Orders.js';
 function App() {
 
   //get the cart items from local storage
@@ -140,6 +141,11 @@ function App() {
 <EditCake/>
 
 </Route>
+
+<Route path="/orders">
+  <Orders/>
+</Route>
+
     </div>
   );
 }
