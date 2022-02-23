@@ -3,6 +3,8 @@ import Navbarr from "./Navbarr.js";
 import Footer from "./Footer.js";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import swal from 'sweetalert'
+
 const ContactUs = () => {
   const [enquiry, setEnquiry] = useState({
     cname: "",
@@ -49,10 +51,16 @@ const ContactUs = () => {
       result.result == "" ||
       result.result == undefined
     ) {
-      alert("Enquiry not saved");
+      swal(":(", "Enquiry Not Saved!", "error");
     } else {
-      alert("Enquiry saved");
+      swal({
+        title: "Enquiry Saved!",
+        text: "We will get back to you soon!",
+        icon: "success",
+        button: "Ok",
+      });
     }
+
   };
 
   return (

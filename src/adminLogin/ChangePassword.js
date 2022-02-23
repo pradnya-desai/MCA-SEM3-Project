@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import swal from 'sweetalert';
 
 const ChangePassword = () => {
 
@@ -31,8 +32,13 @@ const onSubmit= async (event) => {
         })
         const data = await response.json()
         console.log(data);
-  alert(data.result.message);
-
+ // alert(data.result.message);
+swal({
+    title: "Password Changed",
+    text: `${data.result.message}`,
+    icon: "success",
+    button: "OK",
+})
 
     }
      catch(error){

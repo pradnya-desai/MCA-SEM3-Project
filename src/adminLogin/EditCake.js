@@ -1,5 +1,6 @@
 import React from "react";
 import { useState,useEffect } from "react";
+import swal from "sweetalert";
 const EditCake=()=>{
 
     const [cakes, setCakes] = useState([])
@@ -46,10 +47,15 @@ async function deleteCake(_id) {
    const result=await response.json();
    getData();
  if(result.result==null||result.result==""||result.result==undefined){
-   alert("Cake not deleted");
+  swal("cake not deleted",  "error");
  }
   else{
-    alert("Cake deleted");
+   swal({
+    title: "Cake Deleted",
+    text: "Cake deleted successfully",
+    icon: "success",
+    button: "OK",
+   })
   }
     // .then((result) => {
     //   result.json().then((resp) => {
@@ -84,7 +90,13 @@ async function deleteCake(_id) {
     })
     const data=await response.json();
     console.log(data);
-    alert("cake updated");
+    swal({
+      title: "Cake Updated",
+      text: "Cake updated successfully",
+      icon: "success",
+      button: "OK",
+      })
+      
     // .then((result) => {
     //   result.json().then((resp) => {
     //     console.warn(resp)

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
+import swal from 'sweetalert';
 const Orders = () => {
 
 
@@ -75,24 +76,58 @@ setDeliveryType(data[0].deliveryType);
         }
     
 
-       async function deleteOrder(_id) {
+       async function deleteOrder(_id,customerEmail,customerName,totalPrice) {
+
+//fetch the _id of the order to be deleted and store it in a variable 
+
+
+
          const response=await fetch(`/order/deleteOrder/${_id}`, {
             method: 'DELETE',
           })
+
          const result=await response.json();
+          console.log(result);
+         
          getData();
        if(result.result==null||result.result==""||result.result==undefined){
-         alert("Order not deleted");
+         swal("Order Not Deleted", "", "Error");
        }
         else{
-          alert("Order deleted");
+          swal({
+            title: "Order Deleted",
+            text: "",
+            icon: "success",
+            button: "OK",
+    
+          })
         }
-          // .then((result) => {
-          //   result.json().then((resp) => {
-          //     console.warn(resp)
-          //     getData()
-          //   })
-          // })
+
+        const order_Id=_id;
+
+        const responsee = await fetch("/order/deleteOrderMail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            order_Id,
+            customerEmail,
+            customerName,
+            totalPrice,
+            customerPhone,
+            totalOrderedProducts
+          })
+        });
+        
+        const data = await responsee.json();
+        console.log(data);
+        
+        
+
+
+
+
         }
 
          function selectOrder(id)
@@ -135,12 +170,21 @@ try {
   });
   const result=await response.json();
   if(result.result==null||result.result==""||result.result==undefined){
-    alert("Order not confirmed");
+    swal("Order Not Confirmed", "", "Error");
   }
    else{
-     alert("Order confirmed");
+swal({
+  title: "Yay",
+  text: "Order Confirmed!",
+  icon: "success",
+  button: "OK",
+
+
+})
    }
-} catch (error) {
+  }
+
+ catch (error) {
   console.log(error);
 }
           //  .then((result) => {
@@ -222,7 +266,10 @@ try {
              
             
              
-            <td><button className="btn btn-danger" onClick={() => deleteOrder(orders._id)}>Delete Order</button></td>
+            <td><button className="btn btn-danger" onClick={() => 
+              deleteOrder(orders._id,orders.customerEmail,orders.customerName,orders.totalPrice,
+              orders.customerPhone,orders.totalOrderedProducts)}>
+              Delete Order</button></td>
                 <td><button className="btn btn-info" onClick={() => selectOrder(orders.id)}>Accept Order</button></td>
 
             </tr>

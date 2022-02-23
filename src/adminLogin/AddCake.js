@@ -1,7 +1,7 @@
 import React from 'react'
  //import data from '../components/data.js'
  import { useState,useEffect } from 'react';
- 
+ import swal from 'sweetalert';
 const AddCake = () => {
     const [existingCakes, setExistingCakes] = useState([]);
 
@@ -82,9 +82,14 @@ const onSubmit = async (e) => {
       result.result == "" ||
       result.result == undefined
     ) {
-      alert("cake not added");
+     swal("Oops!", "Cake Not Added!", "error");
     } else {
-      alert(" new cake added");
+    swal({
+      title: "Cake Added",
+      text: "Cake added successfully",
+      icon: "success",
+      button: "OK",
+    })
     }
   };
 
@@ -97,7 +102,7 @@ const onSubmit = async (e) => {
 <div class="row input-container">
 <div class="col-md-6 col-sm-12">
             <div class="styled-input1">
-                <input type="number"  disabled className="contact-input" required />
+                {/* <input type="number"  disabled className="contact-input" required /> */}
                 {/* <label>Cake Id </label>  */}
             </div>
         </div>
@@ -137,7 +142,7 @@ const onSubmit = async (e) => {
             </div>
         </div> */}
         <div class="col-xs-12">
-           <button type='submit'> <div class="btn-lrg submit-btn">Change Password</div></button>
+           <button type='submit'> <div class="btn-lrg submit-btn">Add Cake</div></button>
         </div>
 </div>
 </form>

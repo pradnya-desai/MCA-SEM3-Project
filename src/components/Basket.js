@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   faPlus,
   faMinus,
@@ -11,7 +11,12 @@ import Select from "react-select";
 import { useState } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import Shipping from "./Shipping";
+import swal from "sweetalert";
 function Basket(props) {
+  useEffect(() => {
+    getOrders();
+  }, []);
+
   const { cartItems, onAdd, onRemove } = props;
  //save the cartItems in a state variable
   //const [cartItemsState, setCartItemsState] = useState(cartItems);
@@ -41,6 +46,31 @@ for(var i=0;i<cname.length;i++)
   window.onhashchange = function () {
     window.location.hash = "";
   };
+
+async function getOrders(){
+//  try{
+//   const response = await fetch("/order/getOrder");
+//   var data = await response.json();
+//   console.log(data);
+// }
+// catch(error){
+//   console.log(error);
+
+// }
+// //extract the last id from the data and save it in a variable called id 
+// var id = data.result.orderData[data.result.orderData.length-1].id;
+// console.log(id);
+// //code to increment the id by 1 and save it in a variable called newId
+//  var newId = id+1;
+// console.log(newId);
+
+
+
+
+}
+
+
+
   var deliveryType = [
     {
       value: 1,
@@ -183,10 +213,13 @@ for(var i=0;i<cname.length;i++)
       result.result == "" ||
       result.result == undefined
     ) {
-      alert("customer information not saved");
-    } else {
-      alert("customer information saved");
-    }
+      swal(":(", "Customer Information not saved !", "error");    } else {
+      swal({
+        title: "Customer Information Saved!",
+        text: "Click on Continue to Place your Order!",
+        icon: "success",
+        button: "Ok",
+      });    }
   };
 
   const [customerOtpEmail, setCustomerOtpEmail] = useState({
@@ -220,10 +253,13 @@ for(var i=0;i<cname.length;i++)
       result.result == "" ||
       result.result == undefined
     ) {
-      alert("customer information not found");
-    } else {
-      alert("customer information found");
-      setCustomerInfo({
+      swal(":(", "Customer Information not found!", "error");    } else {
+      swal({
+        title: "Customer Information Found!",
+        text: "Click on get OTP to confirm your order!",
+        icon: "success",
+        button: "Ok",
+      });       setCustomerInfo({
         custName: result.result.customerData.custName,
         custEmail: result.result.customerData.custEmail,
         custPhone: result.result.customerData.custPhone,
@@ -257,10 +293,15 @@ const validateOtp=async(e)=>{
   })
   const result=await response.json();
   if(result.result==null || result.result=="" || result.result==undefined){
-    alert("otp not matched");
+    swal(":(","OTP not matched!","error");
   }
   else{
-    alert("otp matched");
+    swal({
+      title: "OTP Matched!",
+      text: "Click on place order",
+      icon: "success",
+      button: "Ok",
+    }); 
   }
 
 }
@@ -307,7 +348,32 @@ const onSubmitOrderInfo=async(e)=>{
 //     cakeDetails, allItemsPrice,totalOrderedProducts,orderTaxPrice, orderShippingPrice,orderDeliveryType,orderTotalPrice,
 // dateOfDelivery}=orderInfo;
 //const {cakeDetails}=orderInfo;
+
+
+try{
+  const response = await fetch("/order/getOrder");
+  var data = await response.json();
+  console.log(data);
+}
+catch(error){
+  console.log(error);
+
+}
+//extract the last id from the data and save it in a variable called id 
+var id = data.result.orderData[data.result.orderData.length-1].id;
+console.log(id);
+//code to increment the id by 1 and save it in a variable called newId
+ var newid = id+1;
+console.log(newid);
+
+var newId=Number(newid);
+
+
+
 const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=customerInfo;
+
+
+
 
 
   const response=await fetch("/order/saveOrder",{
@@ -335,11 +401,11 @@ const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=custome
 
       'allItemsPrice':itemsPrice,
       'totalOrderedProducts':cartItems.length,
-      'orderTaxPrice':taxPrice,
-      'orderShippingPrice':shippingPrice,
+      'taxPrice':taxPrice,
+      'shippingPrice':shippingPrice,
       //'orderDeliveryType':deliveryType,
-      'orderTotalPrice':totalPrice,
-
+      'totalPrice':totalPrice,
+      'id':newId,
 
 customerName:custName,
 customerEmail:custEmail,
@@ -354,10 +420,15 @@ customerMessage:custMessage,
   })
   const result=await response.json();
   if(result.result==null || result.result=="" || result.result==undefined){
-    alert("order not saved");
+    swal(":(","Order not placed!","error");
   }
   else{
-    alert("order saved");
+    swal({
+      title: "Order Saved!",
+      text: "Check Your Mail For Further Details",
+      icon: "success",
+      button: "Ok",
+    }); 
   }
 }
 
@@ -488,9 +559,48 @@ customerMessage:custMessage,
                 style={{ fontWeight: "bold" }}
                 onClick={(e) => {
                   deliveryOption &&
-                    alert(
-                      `you have selected ${cartItems.length} products with ${deliveryOption} Delivery Type Do you want to checkout?`
-                    );
+                  swal(`you have selected ${cartItems.length} products with 
+                  ${deliveryOption} Delivery Type `)
+                   
+
+
+//                     import React from 'react'
+// import swal from '@sweetalert/with-react'
+ 
+// const onPick = value => {
+//   swal("Thanks for your rating!", `You rated us ${value}/3`, "success")
+// }
+ 
+// const MoodButton = ({ rating, onClick }) => (
+//   <button 
+//     data-rating={rating}
+//     className="mood-btn" 
+//     onClick={() => onClick(rating)}
+//   />
+// )
+ 
+// swal({
+//   text: "How was your experience getting help with this issue?",
+//   buttons: {
+//     cancel: "Close",
+//   },
+//   content: (
+//     <div>
+//       <MoodButton 
+//         rating={1} 
+//         onClick={onPick}
+//       />
+//       <MoodButton 
+//         rating={2} 
+//         onClick={onPick}
+//       />
+//       <MoodButton 
+//         rating={3} 
+//         onClick={onPick}
+//       />
+//     </div>
+//   )
+// })
                   // if (deliveryOption) {
                   //   e.preventDefault();
 

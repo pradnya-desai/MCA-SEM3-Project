@@ -30,7 +30,7 @@ const {product,onAdd}=props;
                         <div className="card">
                         <span>Sale</span>
                             <div className="card-image">
-                                <img src={product.image}/>
+                                <img src={product.image} alt="Temporarily Unavailable"/>
                                 </div>
                                 <h2 style={{ position: "relative" }}>{product.cname}</h2>
                                 <h3>{product.price}</h3>

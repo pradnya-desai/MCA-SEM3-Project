@@ -21,6 +21,7 @@ import Shipping from './components/Shipping';
 import CustomerEnquiries from './adminLogin/CustomerEnquiries';
 import EditCake from './adminLogin/EditCake.js';
 import Orders from './adminLogin/Orders.js';
+import TodoList from './adminLogin/TodoList.js';
 function App() {
 
   //get the cart items from local storage
@@ -94,6 +95,7 @@ function App() {
    <Switch>
 <Route path="/adminlogin">
   <Sidebar/>
+  <TodoList/>
 </Route>
 </Switch>
 
@@ -146,6 +148,9 @@ function App() {
   <Orders/>
 </Route>
 
+<Route path="/todo">
+  <TodoList/>
+</Route>
     </div>
   );
 }
