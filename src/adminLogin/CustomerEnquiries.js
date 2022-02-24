@@ -104,26 +104,27 @@ const sendEmail=async(e)=>{
 
         {/* <Button type='submit' onSubmit={onSubmit} style={{height:"4rem", fontSize:"1.2rem"}} variant="primary">Show All Enquiries</Button> */}
 <input type="search"  onInput={filterData} placeholder="search customer" />
-        <table className="table table-striped bg-light" >
+        <table border="5" className="table table-striped bg-light" >
         <thead>
             <tr>
-            <th scope="col">Customer Id</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Customer Id</th>
 
-            <th scope="col">Customer Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Message</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Customer Name</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Email</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Phone</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Message</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Activity</th>
             </tr>
         </thead>
         <tbody>
             {enquiry.map((enquiry) => (
             <tr> 
-             <td>{enquiry._id}</td>   
-            <td>{enquiry.cname}</td>
-            <td>{enquiry.email}</td>
-            <td>{enquiry.phone}</td>
-            <td>{enquiry.message}</td>
-            <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" type='button' >Respond</button></td>
+             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry._id}</td>   
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.cname}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.email}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.phone}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.message}</td>
+            <td><button data-bs-toggle="modal" data-bs-target="#staticBackdrop" type='button' className='btn btn-success' >Respond</button></td>
             </tr>
             ))}
         </tbody>

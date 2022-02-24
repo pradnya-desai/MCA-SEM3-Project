@@ -148,7 +148,7 @@ setDeliveryType(data[0].deliveryType);
               setCustomerMessage(item.customerMessage);
            setDateOfDelivery(item.dateOfDelivery);
            setDeliveryType(item.deliveryType);
-           setOrderId(item._id);
+           //setOrderId(item._id);
 
           }
 
@@ -215,7 +215,8 @@ swal({
     <table border="5" className="table table-striped bg-light" >
         <thead>
             <tr>
-            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Order Id</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Order Mongo Id</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">order id me</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Product Details</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Shipping Price</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Tax Price</th>
@@ -240,6 +241,7 @@ swal({
             {orders.map((orders,i) => (
             <tr key={i}> 
              <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders._id}</td>
+             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.id}</td>
              <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>
                 {orders.cakeDetails.map((cake,i) => (
                 <div key={i}>

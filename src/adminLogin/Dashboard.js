@@ -170,6 +170,7 @@ useEffect(() => {
 //     }
 
 
+
   return (
     <div>
 
@@ -196,7 +197,7 @@ useEffect(() => {
         <span class="card-shadow card-shadow--03"></span>
       </div>
       <div class="card-holder">
-      <button onClick={getEnquiries} type="submit"
+      <button onClick={getEnquiries}type="submit"
           style={{ background:"transparent", border:"none"}}> 
         <section class="card-count card--04">
          
@@ -228,31 +229,32 @@ useEffect(() => {
         <span class="card-shadow card-shadow--05"></span>
       </div>
 
+      
       <table className="table table-striped bg-light" >
         <thead>
             <tr>
-            <th scope="col">Customer Id</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Customer Id</th>
 
-            <th scope="col">Customer Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Message</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Customer Name</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Email</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Phone</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Message</th>
             </tr>
         </thead>
         <tbody>
             {enquiry.map((enquiry) => (
             <tr> 
-             <td>{enquiry._id}</td>   
-            <td>{enquiry.cname}</td>
-            <td>{enquiry.email}</td>
-            <td>{enquiry.phone}</td>
-            <td>{enquiry.message}</td>
+             <td  style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry._id}</td>   
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.cname}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.email}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.phone}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{enquiry.message}</td>
             </tr>
             ))}
         </tbody>
         </table>
 
-        <table border="5" className="table table-striped bg-light">
+        <table  border="5" className="table table-striped bg-light">
  <thead>
 
           <tr>
@@ -284,7 +286,7 @@ useEffect(() => {
       </table>
         
 
-      <table border="5" className="table table-striped bg-light" >
+      <table  border="5" className="table table-striped bg-light" >
         <thead>
             <tr>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Order Id</th>
