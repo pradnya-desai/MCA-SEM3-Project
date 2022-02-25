@@ -23,49 +23,52 @@ const Sales = () => {
 
 
   const [greaterOrderData, setGreaterThanData] = useState([]);
-  const [lessOrderData, setLessThanData] = useState([]);
-useEffect(() => {
+;
+// useEffect(() => {
 
-(async () => {
-  var greaterThanData;
-  try {
-  const response = await fetch('/order/getGreaterOrders');
-  greaterThanData = await response.json();
-  console.log(greaterThanData);
-  } catch (error) {
-  console.log(error);
-  greaterThanData = [];
-  }
+// (async () => {
+//   var greaterThanData;
+//   try {
+//   const response = await fetch('/order/getGreaterOrders');
+//   greaterThanData = await response.json();
+//   console.log(greaterThanData);
+//   } catch (error) {
+//   console.log(error);
+//   greaterThanData = [];
+//   }
 
-  setGreaterThanData(greaterThanData.result.greaterData);
+//   setGreaterThanData(greaterThanData.result.greaterData);
 
-})();
-}, []);
+// })();
+// }, []);
 
-useEffect(() => {
-(async () => {
-  var lessThanData;
-  try {
-  const response = await fetch('/order/getLessOrders');
-  lessThanData = await response.json();
-  console.log(lessThanData);
-  } catch (error) {
-  console.log(error);
-  lessThanData = [];
-  }
-  setLessThanData(lessThanData.result.lessData);
-}
-)();
 
-}, []);
+
+const [lessOrderData, setLessThanData] = useState([])
+// useEffect(() => {
+// (async () => {
+//   var lessThanData;
+//   try {
+//   const response = await fetch('/order/getLessOrders');
+//   lessThanData = await response.json();
+//   console.log(lessThanData);
+//   } catch (error) {
+//   console.log(error);
+//   lessThanData = [];
+//   }
+//   setLessThanData(lessThanData.result.lessData);
+// }
+// )();
+
+// }, []);
 
 
     const data = {
-        labels: ["less than 1000","greater than 1000"],
+        labels: ["5","10","15","20","25","30","35","40","45","50","55"],
         datasets: [
           {
             label: "First dataset",
-            data: [1,2,3,4,5,6,7,8,9,"more than 10"],
+            data: [1,2,3,5,6,7,8,9],
             fill: true,
             backgroundColor: "rgba(75,192,192,0.2)",
             borderColor: "rgba(75,192,192,1)"

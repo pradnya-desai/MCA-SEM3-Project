@@ -164,7 +164,7 @@ const ContactUs = () => {
                   </div>
                 </div>
                 <div class="col-xs-12">
-                  <button type="submit"><div class="btn-lrg submit-btn">Send Message</div></button>
+                  <button type="submit" style={{border:"none",backgroundColor:"black"}}><div class="btn-lrg submit-btn">Send Message</div></button>
                 </div>
               </div>
             </div>

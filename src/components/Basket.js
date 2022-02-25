@@ -425,7 +425,7 @@ customerMessage:custMessage,
   else{
     swal({
       title: "Order Saved!",
-      text: "Check Your Mail For Further Details",
+      text: "Wait for the confirmation mail from us :) For any queries call us on +91-9422461056",
       icon: "success",
       button: "Ok",
     }); 
@@ -1007,7 +1007,7 @@ customerMessage:custMessage,
 
                           <div>
                             <h5>{item.cname}</h5>
-                            <input type="text" value={item.cname} disabled />
+                            <input type="text" hidden value={item.cname} disabled />
                           </div>
 
                           <div>
@@ -1029,7 +1029,7 @@ customerMessage:custMessage,
                       <div>Items Price</div>
                       <div>
                         <FontAwesomeIcon icon={faRupeeSign} /> {itemsPrice}
-                        <input type="text" onChange={handleInputChangeOrderInfo} name="allItemsPrice" value={itemsPrice} disabled />
+                        <input type="text" hidden disabled onChange={handleInputChangeOrderInfo} name="allItemsPrice" value={itemsPrice} disabled />
                       </div>
                       <div className="row">
                         {/* <div className="col-2">Tax Price</div> */}
@@ -1082,15 +1082,15 @@ customerMessage:custMessage,
                         </div>
                         <br/> */}
                       <hr />
-                      <label>
+                      {/* <label>
                         <input type="checkbox" onClick={sync} id="custInfo" />
                         Click Here If the email entered on the previous page is same
-                      </label>
+                      </label> */}
                       <div class="shipping-arts-and-dogs">
                         <div class="shipping-germany col-md-12">
                           <div class="col-md-12">
                             <div>
-                              <h2 style={{}}>ORDER CONFIRMATION</h2>
+                              <h2>ORDER CONFIRMATION</h2>
                             </div>
                             <div
                               class="styled-input1"
@@ -1315,7 +1315,7 @@ customerMessage:custMessage,
                                 Tax Price:{" "}
                                 <FontAwesomeIcon icon={faRupeeSign} />{" "}
                                 {taxPrice.toFixed(2)}
-                                <input type="text" name="orderTaxPrice" onChange={handleInputChangeOrderInfo} disabled value={taxPrice.toFixed(2)} />
+                                <input type="text" hidden name="orderTaxPrice" onChange={handleInputChangeOrderInfo} disabled value={taxPrice.toFixed(2)} />
                               </span>
                             </div>
                             <div>
@@ -1326,7 +1326,7 @@ customerMessage:custMessage,
                                 }}
                               >
                                 Total Products: {cartItems.length}
-                                <input type="text" disabled name="orderTotalProducts" onChange={handleInputChangeOrderInfo} value={cartItems.length} />
+                                <input type="text" hidden disabled name="orderTotalProducts" onChange={handleInputChangeOrderInfo} value={cartItems.length} />
                               </span>
                             </div>
 
@@ -1372,7 +1372,7 @@ customerMessage:custMessage,
                                     Shipping Price:
                                     <FontAwesomeIcon icon={faRupeeSign} />
                                     {shippingPrice * 0}
-                                    <input type="text" disabled name="orderShippingPrice" onChange={handleInputChangeOrderInfo} value={shippingPrice*0} />                      
+                                    <input hidden type="text" disabled name="orderShippingPrice" onChange={handleInputChangeOrderInfo} value={shippingPrice*0} />                      
                                   </span>
                                 </div>
 
@@ -1387,7 +1387,7 @@ customerMessage:custMessage,
                                     <strong>
                                       <FontAwesomeIcon icon={faRupeeSign} />{" "}
                                       {totalPrice.toFixed(2) - 20}
-                                      <input disabled type="text" name="orderTotalPrice" onChange={handleInputChangeOrderInfo} value={totalPrice.toFixed(2)-20} onChange={handleInputChangeOrderInfo} />
+                                      <input hidden disabled type="text" name="orderTotalPrice" onChange={handleInputChangeOrderInfo} value={totalPrice.toFixed(2)-20} onChange={handleInputChangeOrderInfo} />
                                     </strong>
                                   </span>
                                 </div>

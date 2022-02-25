@@ -165,20 +165,21 @@ value={admin.password}
 
 			</div>
        <br/>
-			<div class="col-md-6 col-sm-12">
-				{/* <Link to='/adminlogin' target="_blank"> */}
-				<button ><div class="btn-lrg submit-btn">Sign In</div></button>
-					{/* </Link> */}
-			</div>
-            <br/>
-            <br/>
+			
 
-            <div class="col-md-6 col-sm-12">
+            {/* <div class="col-md-6 col-sm-12">
 			<a>Forgot Password</a>
-			</div>
+			</div> */}
 	</div>
+	
 </div>
 
+<br/>
+            <br/>
+				{/* <Link to='/adminlogin' target="_blank"> */}
+				<button type='submit' style={{border:"none", backgroundColor:"black"}} ><div class=" submit-btn">Sign In</div></button>
+					{/* </Link> */}
+			
        </form>
 
         </div>

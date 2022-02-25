@@ -26,8 +26,8 @@ const Home = () => {
         </div>
 
         <div className="photo-btn-grp">
-        <NavLink to="/occassions-bestsellers"> <Button type="submit" variant='dark'>VIEW MORE</Button></NavLink>
-        <NavLink to="/birthday"> <Button type="submit" variant='dark' id="a1">BIRTHDAY CAKES</Button></NavLink>
+        <NavLink to="/cart"> <Button type="submit" variant='dark'>VIEW MORE</Button></NavLink>
+        <NavLink to="/cart"> <Button type="submit" variant='dark' id="a1">BIRTHDAY CAKES</Button></NavLink>
         </div>
       </div>
 
@@ -69,7 +69,7 @@ const Home = () => {
 
 <section id="section-2">
 <div class="bg-img ">
-  <form action="" class="container1">
+  <form action="" className="container1">
 <img src={visitingcard} style={{height:"300px"}}/>
     
   </form>
@@ -78,7 +78,7 @@ const Home = () => {
 
 
 
-  <div style={{paddingBottom:"10px",position:"relative"}}>{Footer}</div>
+  <div style={{paddingBottom:"0px",position:"relative"}}>{Footer}</div>
         </div>
     )
 }

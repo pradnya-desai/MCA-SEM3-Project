@@ -40,7 +40,7 @@ const Sidebar = (props) => {
           </a>
           <ul class="dropdown-menu active" aria-labelledby="navbarDropdown">
             <li><NavLink to="/orders"><a style={{color:"black"}} class="dropdown-item" href="#">Show Orders</a></NavLink></li>
-            <li><a  style={{color:"black"}} class="dropdown-item" href="#">Another action</a></li>
+            <li><NavLink to="/orderlist"><a  style={{color:"black"}} class="dropdown-item" href="#">Order List</a></NavLink></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a style={{color:"black"}} class="dropdown-item" href="#">Something else here</a></li>
           </ul>

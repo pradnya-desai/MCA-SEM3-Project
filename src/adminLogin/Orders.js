@@ -130,25 +130,27 @@ setDeliveryType(data[0].deliveryType);
 
         }
 
-         function selectOrder(id)
+         function selectOrder(_id,shippingPrice,taxPrice,totalPrice,totalOrderedProducts,
+          allItemsTotal,customerAddress,customerName,customerPhone,customerEmail,customerMessage,
+          dateOfDelivery,deliveryType,deliveryTime) 
           {
-          let item=orders[id-1];
 
-          setOrderId(item.id);
-          setShippingPrice(item.shippingPrice);
-          setTaxPrice(item.taxPrice);
-          setTotalPrice(item.totalPrice);
-          setTotalProducts(item.totalOrderedProducts);
-          setAllItemsTotal(item.allItemsTotal);
-          //setCakeDetails(item.cakeDetails)
-             setCustomerAddress(item.customerAddress);
-              setCustomerName(item.customerName);
-             setCustomerPhone(item.customerPhone);
-              setCustomerEmail(item.customerEmail);
-              setCustomerMessage(item.customerMessage);
-           setDateOfDelivery(item.dateOfDelivery);
-           setDeliveryType(item.deliveryType);
-           //setOrderId(item._id);
+
+            setOrderId(_id);
+            //setCakeDetails(cakeDetails);
+            setShippingPrice(shippingPrice);
+            setTaxPrice(taxPrice);
+            setTotalPrice(totalPrice);
+            setTotalProducts(totalOrderedProducts);
+            setAllItemsTotal(allItemsTotal);
+            setCustomerAddress(customerAddress);
+            setCustomerName(customerName);
+            setCustomerPhone(customerPhone);
+            setCustomerEmail(customerEmail);
+            setCustomerMessage(customerMessage);
+            setDateOfDelivery(dateOfDelivery);
+            setDeliveryType(deliveryType);
+            setDeliveryTime(deliveryTime);
 
           }
 
@@ -216,7 +218,7 @@ swal({
         <thead>
             <tr>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Order Mongo Id</th>
-            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">order id me</th>
+            {/* <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">order id me</th> */}
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Product Details</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Shipping Price</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Tax Price</th>
@@ -241,7 +243,7 @@ swal({
             {orders.map((orders,i) => (
             <tr key={i}> 
              <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders._id}</td>
-             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.id}</td>
+             {/* <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.id}</td> */}
              <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>
                 {orders.cakeDetails.map((cake,i) => (
                 <div key={i}>
@@ -272,7 +274,12 @@ swal({
               deleteOrder(orders._id,orders.customerEmail,orders.customerName,orders.totalPrice,
               orders.customerPhone,orders.totalOrderedProducts)}>
               Delete Order</button></td>
-                <td><button className="btn btn-info" onClick={() => selectOrder(orders.id)}>Accept Order</button></td>
+                <td><button className="btn btn-info" onClick={() => selectOrder(orders._id,
+                orders.shippingPrice,orders.taxPrice,orders.totalPrice,orders.totalOrderedProducts,
+                orders.allItemsTotal,orders.customerAddress,orders.customerName,orders.customerPhone,
+                orders.customerEmail,orders.customerMessage,orders.dateOfDelivery,orders.deliveryType
+                  
+                  )}>Accept Order</button></td>
 
             </tr>
             ))}
@@ -284,7 +291,7 @@ swal({
 <br/><br/>
 <div className="container">
 <div className="row input-container">
-<input type="text" value={_id} onChange={(e) =>{setOrderId(e.target.value)}} />
+<input type="text" disabled value={_id} onChange={(e) =>{setOrderId(e.target.value)}} />
 {/* {orders.map((orders,i) => (
             <div key={i}> 
                 {orders.cakeDetails.map((cake,i) => (
@@ -295,22 +302,23 @@ swal({
                 </div>
               ))}
          </div>
-            ))}
-      */}
+            ))} */}
+     
+                {/* <input type="text" value={cakeName} onChange={(e) =>{setCakeName(e.target.value)}} /> */}
 
-{/* <br/><br/> <input type="text" value={cakeDetails} onChange={(e)=>{setCakeDetails(e.target.value)}} /> <br /><br /> */}
-<input type="text" value={shippingPrice} onChange={(e)=>{setShippingPrice(e.target.value)}} /> <br /><br />
-<input type="text" value={taxPrice}  onChange={(e)=>{setTaxPrice(e.target.value)}} /> <br /><br />
-<input type="text" value={totalPrice} onChange={(e)=>{setTotalPrice(e.target.value)}} /> <br /><br />
-<input type="text" value={totalOrderedProducts} onChange={(e)=>{setTotalProducts(e.target.value)}} /> <br /><br />
-<input type="text" value={allItemsTotal} onChange={(e)=>{setAllItemsTotal(e.target.value)}} /><br /><br />
-<input type="text" value={customerAddress} onChange={(e)=>{setCustomerAddress(e.target.value)}} /> <br /><br />
-<input type="text" value={customerName} onChange={(e)=>{setCustomerName(e.target.value)}} /> <br /><br />
-<input type="text" value={customerPhone} onChange={(e)=>{setCustomerPhone(e.target.value)}} /> <br /><br />
-<input type="text" value={customerEmail} onChange={(e)=>{setCustomerEmail(e.target.value)}} /> <br /><br />
-<input type="text" value={customerMessage} onChange={(e)=>{setCustomerMessage(e.target.value)}} /> <br /><br />
-<input type="text" value={dateOfDelivery} onChange={(e)=>{setDateOfDelivery(e.target.value)}} /> <br /><br />
-<input type="text" value={deliveryType} onChange={(e)=>{setDeliveryType(e.target.value)}} /> <br /><br />
+{/* <br/><br/> <input type="text" disabled value={cakeDetails} onChange={(e)=>{setCakeDetails(e.target.value)}} /> <br /><br /> */}
+<input type="text" disabled value={shippingPrice} onChange={(e)=>{setShippingPrice(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={taxPrice}  onChange={(e)=>{setTaxPrice(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={totalPrice} onChange={(e)=>{setTotalPrice(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={totalOrderedProducts} onChange={(e)=>{setTotalProducts(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={allItemsTotal} onChange={(e)=>{setAllItemsTotal(e.target.value)}} /><br /><br />
+<input type="text" disabled value={customerAddress} onChange={(e)=>{setCustomerAddress(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={customerName} onChange={(e)=>{setCustomerName(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={customerPhone} onChange={(e)=>{setCustomerPhone(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={customerEmail} onChange={(e)=>{setCustomerEmail(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={customerMessage} onChange={(e)=>{setCustomerMessage(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={dateOfDelivery} onChange={(e)=>{setDateOfDelivery(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={deliveryType} onChange={(e)=>{setDeliveryType(e.target.value)}} /> <br /><br />
 <input type="text" value={deliveryTime} onChange={(e)=>{setDeliveryTime(e.target.value)}} placeholder="enter the delivery time" /> <br /><br />
 </div>
 </div>
