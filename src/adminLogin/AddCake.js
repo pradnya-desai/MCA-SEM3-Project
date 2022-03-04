@@ -100,12 +100,7 @@ const onSubmit = async (e) => {
 
       <form onSubmit={onSubmit}>
 <div class="row input-container">
-<div class="col-md-6 col-sm-12">
-            <div class="styled-input1">
-                {/* <input type="number"  disabled className="contact-input" required /> */}
-                {/* <label>Cake Id </label>  */}
-            </div>
-        </div>
+
         <div class="col-md-6 col-sm-12">
             <div class="styled-input1">
                 <input type="text" name='cname' onChange={handleChange} value={cakess.cname} className="contact-input" required />
@@ -142,7 +137,7 @@ const onSubmit = async (e) => {
             </div>
         </div> */}
         <div class="col-xs-12">
-           <button type='submit'> <div class="btn-lrg submit-btn">Add Cake</div></button>
+           <button type='submit' className='btn btn-dark' style={{backgroundColor:"black",border:"none"}}> <div class="btn-lrg submit-btn">Add Cake</div></button>
         </div>
 </div>
 </form>

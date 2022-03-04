@@ -169,6 +169,39 @@ useEffect(() => {
 //       setHomeDeliveryOrders(homeDeliveryData.result.orderData);
 //     }
 
+const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
+          useEffect(() => {
+            (async () => {
+              var AcceptedOrdersDataCount;
+              try {
+                const response = await fetch("/order/getAcceptedOrdersCount");
+                AcceptedOrdersDataCount = await response.json();
+                console.log(AcceptedOrdersDataCount);
+              } catch (error) {
+                console.log(error);
+                AcceptedOrdersDataCount = [];
+              }
+              setAcceptedOrdersCount(AcceptedOrdersDataCount.result.acceptedOrdersCount);
+            })();
+              }, []);
+
+
+              const [getDeletedOrdersCount, setDeletedOrdersCount] = useState([]);
+              useEffect(() => {
+                (async () => {
+                  var DeletedOrdersDataCount;
+                  try {
+                    const response = await fetch("/order/getDeletedOrdersCount");
+                    DeletedOrdersDataCount = await response.json();
+                    console.log(DeletedOrdersDataCount);
+                  } catch (error) {
+                    console.log(error);
+                    DeletedOrdersDataCount = [];
+                  }
+                  setDeletedOrdersCount(DeletedOrdersDataCount.result.deletedOrdersCount);
+                })();
+
+                }, []);
 
 
   return (
@@ -228,8 +261,27 @@ useEffect(() => {
         </button>
         <span class="card-shadow card-shadow--05"></span>
       </div>
-
-      
+     
+      <div class="card-holder">
+      <button type="submit"
+          style={{ background:"transparent", border:"none"}}>
+        <section class="card-count card--07">
+          <h1 class="card__heading">Rejected Orders</h1>
+          <p style={{fontWeight:"bolder"}} class="card__text">{getDeletedOrdersCount}</p>
+        </section>
+        </button>
+        <span class="card-shadow card-shadow--07"></span>
+      </div>
+      <div class="card-holder">
+      <button  type="submit"
+          style={{ background:"transparent", border:"none"}}>
+        <section class="card-count card--06">
+          <h1 class="card__heading">Accepted Orders</h1>
+          <p style={{fontWeight:"bolder"}} class="card__text">{getAcceptedOrdersCount}</p>
+        </section>
+        </button>
+        <span class="card-shadow card-shadow--06"></span>
+      </div>
       <table className="table table-striped bg-light" >
         <thead>
             <tr>

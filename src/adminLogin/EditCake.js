@@ -64,14 +64,14 @@ async function deleteCake(_id) {
     //   })
     // })
   }
-  function selectCake(id)
+  function selectCake(_id,cname,image,price,category)
   {
-    let item=cakes[id-1];
-    setName(item.cname)
-        setImage(item.image)
-        setPrice(item.price);
-        setId(item.id)
-        setCategory(item.category)
+    // let item=cakes[id-1];
+    setName(cname)
+        setImage(image)
+        setPrice(price);
+        setId(_id)
+        setCategory(category)
   }
 
   async function updateCake(e)
@@ -140,7 +140,7 @@ return(
                 
 
                 <td><button className="btn btn-danger" onClick={() => deleteCake(item._id)}>Delete</button></td>
-                <td><button className="btn btn-info" onClick={() => selectCake(item.id)}>Update</button></td>
+                <td><button className="btn btn-info" onClick={() => selectCake(item._id,item.cname,item.image,item.price,item.category)}>Update</button></td>
 
               </tr>
             )

@@ -131,14 +131,104 @@ const [lessOrderData, setLessThanData] = useState([])
                 setPickupCount(PickupData.result.pickupOrders);
               })();
                 }, []);
+const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
+          useEffect(() => {
+            (async () => {
+              var AcceptedOrdersDataCount;
+              try {
+                const response = await fetch("/order/getAcceptedOrdersCount");
+                AcceptedOrdersDataCount = await response.json();
+                console.log(AcceptedOrdersDataCount);
+              } catch (error) {
+                console.log(error);
+                AcceptedOrdersDataCount = [];
+              }
+              setAcceptedOrdersCount(AcceptedOrdersDataCount.result.acceptedOrdersCount);
+            })();
+              }, []);
 
+
+              const [getDeletedOrdersCount, setDeletedOrdersCount] = useState([]);
+              useEffect(() => {
+                (async () => {
+                  var DeletedOrdersDataCount;
+                  try {
+                    const response = await fetch("/order/getDeletedOrdersCount");
+                    DeletedOrdersDataCount = await response.json();
+                    console.log(DeletedOrdersDataCount);
+                  } catch (error) {
+                    console.log(error);
+                    DeletedOrdersDataCount = [];
+                  }
+                  setDeletedOrdersCount(DeletedOrdersDataCount.result.deletedOrdersCount);
+                })();
+
+                }, []);
+
+                const [orders, setOrders] = useState([])
+                const [totalLoss, setTotalLoss] = useState([]);
+              
+                useEffect(() => {
+                  (async () => {
+                      var DeletedOrdersData;
+                      try{
+                      const response = await fetch('order/getDeletedOrders');
+                       DeletedOrdersData = await response.json();
+                      console.log(DeletedOrdersData);
+                  }
+                  catch(e){
+                      console.log(e);
+              DeletedOrdersData=[];
+                  }
+                  setOrders(DeletedOrdersData.result.allDeletedOrders)
+          const totalLoss = DeletedOrdersData.result.totalPriceMinus;
+          console.log(totalLoss);
+
+          setTotalLoss(totalLoss);
+                  })();
+              }, [])
       
+
+
      const Piedata = {
             labels: ['Pickup',  'Home Delivery',],
             datasets: [
               {
                 label: '# of Votes',
                 data: [`${homeDeliveryCount}`, `${pickupCount}`],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  // 'rgba(54, 162, 235, 0.2)',
+                  // 'rgba(255, 206, 86, 0.2)',
+                  // 'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  // 'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                  'rgb(0, 0, 0)',
+                  // 'rgba(54, 162, 235, 1)',
+                  // 'rgba(255, 206, 86, 1)',
+                  // 'rgba(75, 192, 192, 1)',
+                  'rgb( 0, 0, 0)',
+                  // 'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+
+                width: 50,
+                height: 50
+              },
+            ],
+          };
+          
+
+
+
+          const Pie1data = {
+            labels: ['Accepted Orders',  'Rejected Orders',],
+            datasets: [
+              {
+                label: '# of Votes',
+                data: [`${getAcceptedOrdersCount}`, `${getDeletedOrdersCount}`],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   // 'rgba(54, 162, 235, 0.2)',
@@ -191,17 +281,29 @@ const [lessOrderData, setLessThanData] = useState([])
         
     return (
         <div className="container">
+
         <div>
             <h1>Sales</h1>
             <Line data={data} />
         </div>
+        <br/>
+        <hr/>
 
 
         <div>
             <h1>Sales</h1>
             <Pie data={Piedata} />
         </div>
+        <br/>
+<hr/>
 
+      <div>
+            <h1>Sales</h1>
+            
+            <h2>Potential Profit:  <h3 style={{color:"red"}}>&#8377; {totalLoss}</h3></h2>
+            <br/>
+            <Pie data={Pie1data}/>
+      </div>
         {/* <div>
         <Bar data={barChartData}
            />

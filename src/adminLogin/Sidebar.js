@@ -42,7 +42,7 @@ const Sidebar = (props) => {
             <li><NavLink to="/orders"><a style={{color:"black"}} class="dropdown-item" href="#">Show Orders</a></NavLink></li>
             <li><NavLink to="/orderlist"><a  style={{color:"black"}} class="dropdown-item" href="#">Order List</a></NavLink></li>
             <li><hr class="dropdown-divider"/></li>
-            <li><a style={{color:"black"}} class="dropdown-item" href="#">Something else here</a></li>
+            <li><NavLink to="/adminOrderStatus"><a style={{color:"black"}} class="dropdown-item" href="#">Update Order Status</a></NavLink></li>
           </ul>
         </li>
         <li class="nav-item">

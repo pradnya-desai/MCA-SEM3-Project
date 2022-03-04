@@ -216,7 +216,7 @@ async function getOrders(){
       swal(":(", "Customer Information not saved !", "error");    } else {
       swal({
         title: "Customer Information Saved!",
-        text: "Click on Continue to Place your Order!",
+        text: "Enter Your Email-Id to get OTP on your email!",
         icon: "success",
         button: "Ok",
       });    }
@@ -256,7 +256,7 @@ async function getOrders(){
       swal(":(", "Customer Information not found!", "error");    } else {
       swal({
         title: "Customer Information Found!",
-        text: "Click on get OTP to confirm your order!",
+        text: "Enter the OTP sent  on your mail to confirm your order!",
         icon: "success",
         button: "Ok",
       });       setCustomerInfo({
@@ -276,7 +276,7 @@ async function getOrders(){
     console.log(result);
   };
 
-
+  // var onSubmitOrderInfo;
 const validateOtp=async(e)=>{
   e.preventDefault();
 
@@ -293,7 +293,12 @@ const validateOtp=async(e)=>{
   })
   const result=await response.json();
   if(result.result==null || result.result=="" || result.result==undefined){
-    swal(":(","OTP not matched!","error");
+    swal({
+      title:"OTP Not Matched",
+      text:"Please Enter the correct OTP to place the order", 
+      icon:"error",
+      button:"error"
+    })
   }
   else{
     swal({
@@ -302,7 +307,96 @@ const validateOtp=async(e)=>{
       icon: "success",
       button: "Ok",
     }); 
-  }
+
+    // onSubmitOrderInfo=async(e)=>{
+    //   e.preventDefault();
+    
+    
+    
+    try{
+      const response = await fetch("/order/getOrder");
+      var data = await response.json();
+      console.log(data);
+    }
+    catch(error){
+      console.log(error);
+    
+    }
+    //extract the last id from the data and save it in a variable called id 
+    var id = data.result.orderData[data.result.orderData.length-1].id;
+    console.log(id);
+    //code to increment the id by 1 and save it in a variable called newId
+     var newid = id+1;
+    console.log(newid);
+    
+    var newId=Number(newid);
+    
+    
+    
+    const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=customerInfo;
+    
+    
+    
+    
+    
+      const response=await fetch("/order/saveOrder",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          // cakeDetails:[{ 
+          //   cartItems:{
+          //   cartItems:""
+          //   },
+          // }],
+          // allItemsPrice,
+          // totalOrderedProducts,
+          // orderTaxPrice,
+          // orderShippingPrice,
+          // orderDeliveryType,
+          // orderTotalPrice,
+    
+          
+    
+    
+         'cakeDetails':cakeDetails,
+    
+          'allItemsPrice':itemsPrice,
+          'totalOrderedProducts':cartItems.length,
+          'taxPrice':taxPrice,
+          'shippingPrice':shippingPrice,
+          //'orderDeliveryType':deliveryType,
+          'totalPrice':totalPrice,
+          'id':newId,
+    
+    customerName:custName,
+    customerEmail:custEmail,
+    customerPhone:custPhone,
+    customerAddress:custAddress,
+    customerPincode:custPincode,
+    customerMessage:custMessage,
+    //dateOfDelivery:dateOfDelivery,
+    
+    
+        })
+      })
+      const result=await response.json();
+      if(result.result==null || result.result=="" || result.result==undefined){
+        swal(":(","Order not placed!","error");
+      }
+      else{
+        swal({
+          title: "Order Saved!",
+          text: "Wait for the confirmation mail from us :) For any queries call us on +91-9422461056",
+          icon: "success",
+          button: "Ok",
+        }); 
+      }
+    }
+
+
+  // }
 
 }
 
@@ -342,95 +436,92 @@ const handleInputChangeOrderInfo=(e)=>{
   console.log(orderInfo);
 }
 
-const onSubmitOrderInfo=async(e)=>{
-  e.preventDefault();
-//   const {
-//     cakeDetails, allItemsPrice,totalOrderedProducts,orderTaxPrice, orderShippingPrice,orderDeliveryType,orderTotalPrice,
-// dateOfDelivery}=orderInfo;
-//const {cakeDetails}=orderInfo;
-
-
-try{
-  const response = await fetch("/order/getOrder");
-  var data = await response.json();
-  console.log(data);
-}
-catch(error){
-  console.log(error);
-
-}
-//extract the last id from the data and save it in a variable called id 
-var id = data.result.orderData[data.result.orderData.length-1].id;
-console.log(id);
-//code to increment the id by 1 and save it in a variable called newId
- var newid = id+1;
-console.log(newid);
-
-var newId=Number(newid);
+// const onSubmitOrderInfo=async(e)=>{
+//   e.preventDefault();
 
 
 
-const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=customerInfo;
+// try{
+//   const response = await fetch("/order/getOrder");
+//   var data = await response.json();
+//   console.log(data);
+// }
+// catch(error){
+//   console.log(error);
+
+// }
+// //extract the last id from the data and save it in a variable called id 
+// var id = data.result.orderData[data.result.orderData.length-1].id;
+// console.log(id);
+// //code to increment the id by 1 and save it in a variable called newId
+//  var newid = id+1;
+// console.log(newid);
+
+// var newId=Number(newid);
+
+
+
+// const {custName,custEmail,custPhone,custAddress,custPincode,custMessage}=customerInfo;
 
 
 
 
 
-  const response=await fetch("/order/saveOrder",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-      // cakeDetails:[{ 
-      //   cartItems:{
-      //   cartItems:""
-      //   },
-      // }],
-      // allItemsPrice,
-      // totalOrderedProducts,
-      // orderTaxPrice,
-      // orderShippingPrice,
-      // orderDeliveryType,
-      // orderTotalPrice,
+//   const response=await fetch("/order/saveOrder",{
+//     method:"POST",
+//     headers:{
+//       "Content-Type":"application/json"
+//     },
+//     body:JSON.stringify({
+//       // cakeDetails:[{ 
+//       //   cartItems:{
+//       //   cartItems:""
+//       //   },
+//       // }],
+//       // allItemsPrice,
+//       // totalOrderedProducts,
+//       // orderTaxPrice,
+//       // orderShippingPrice,
+//       // orderDeliveryType,
+//       // orderTotalPrice,
 
       
 
 
-     'cakeDetails':cakeDetails,
+//      'cakeDetails':cakeDetails,
 
-      'allItemsPrice':itemsPrice,
-      'totalOrderedProducts':cartItems.length,
-      'taxPrice':taxPrice,
-      'shippingPrice':shippingPrice,
-      //'orderDeliveryType':deliveryType,
-      'totalPrice':totalPrice,
-      'id':newId,
+//       'allItemsPrice':itemsPrice,
+//       'totalOrderedProducts':cartItems.length,
+//       'taxPrice':taxPrice,
+//       'shippingPrice':shippingPrice,
+//       //'orderDeliveryType':deliveryType,
+//       'totalPrice':totalPrice,
+//       'id':newId,
 
-customerName:custName,
-customerEmail:custEmail,
-customerPhone:custPhone,
-customerAddress:custAddress,
-customerPincode:custPincode,
-customerMessage:custMessage,
-//dateOfDelivery:dateOfDelivery,
+// customerName:custName,
+// customerEmail:custEmail,
+// customerPhone:custPhone,
+// customerAddress:custAddress,
+// customerPincode:custPincode,
+// customerMessage:custMessage,
+// //dateOfDelivery:dateOfDelivery,
 
 
-    })
-  })
-  const result=await response.json();
-  if(result.result==null || result.result=="" || result.result==undefined){
-    swal(":(","Order not placed!","error");
-  }
-  else{
-    swal({
-      title: "Order Saved!",
-      text: "Wait for the confirmation mail from us :) For any queries call us on +91-9422461056",
-      icon: "success",
-      button: "Ok",
-    }); 
-  }
-}
+//     })
+//   })
+//   const result=await response.json();
+//   if(result.result==null || result.result=="" || result.result==undefined){
+//     swal(":(","Order not placed!","error");
+//   }
+//   else{
+//     swal({
+//       title: "Order Saved!",
+//       text: "Wait for the confirmation mail from us :) For any queries call us on +91-9422461056",
+//       icon: "success",
+//       button: "Ok",
+//     }); 
+//   }
+// }
 
   return (
     <section id="cart-section">
@@ -556,6 +647,7 @@ customerMessage:custMessage,
                 data-bs-toggle="modal"
                 href="#exampleModalToggle"
                 role="button"
+                className="btn btn-dark"
                 style={{ fontWeight: "bold" }}
                 onClick={(e) => {
                   deliveryOption &&
@@ -938,6 +1030,10 @@ customerMessage:custMessage,
                             </div>
                             <div class="col-xs-12">
                               <button
+                              class="btn btn-dark"
+                              data-bs-target="#exampleModalToggle2"
+                              data-bs-toggle="modal"
+                              data-bs-dismiss="modal"
                                 style={{
                                   border: "none",
                                   backgroundColor: "black",
@@ -955,9 +1051,9 @@ customerMessage:custMessage,
                       </div>
                     </div>
 
-                    <div class="modal-footer">
+                    {/* <div class="modal-footer"> */}
                       {/* <NavLink to="/shipping">  */}
-                      {deliveryOption && (
+                      {/* {deliveryOption && (
                         <button
                           class="btn btn-dark"
                           data-bs-target="#exampleModalToggle2"
@@ -970,9 +1066,9 @@ customerMessage:custMessage,
                             <FontAwesomeIcon icon={faShoppingBag} />
                           </b>
                         </button>
-                      )}
+                      )} */}
                       {/* </NavLink> */}
-                    </div>
+                    {/* </div> */}
                   </div>
                 </div>
               </div>
@@ -1169,7 +1265,7 @@ customerMessage:custMessage,
                                   type="submit"
                                   onClick={validateOtp}
                                 >
-                                  VERIFY OTP
+                                  PLACE ORDER
                                 </button>{" "}
                                 &#160; &#160;
                               </div>
@@ -1407,9 +1503,9 @@ customerMessage:custMessage,
                       >
                         Go Back To Info
                       </button>
-                      <button type="submit" onClick={onSubmitOrderInfo} class="btn btn-dark">
+                      {/* <button type="submit" onClick={onSubmitOrderInfo} class="btn btn-dark">
                         Place Order <FontAwesomeIcon icon={faShoppingBasket} />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>

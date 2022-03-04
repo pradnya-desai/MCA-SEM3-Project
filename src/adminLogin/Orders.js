@@ -155,33 +155,35 @@ setDeliveryType(data[0].deliveryType);
           }
 
 
-        async function confirmOrder()
-        {
-          
-           
-
+        async function confirmOrder(){
 try {
   const response = await fetch(`/order/confirmOrder`, {
     method: 'POST',
     body: JSON.stringify(
-      {shippingPrice,taxPrice,totalPrice,totalOrderedProducts,allItemsTotal,customerAddress,customerName,customerPhone,customerEmail,customerMessage,dateOfDelivery,deliveryType,cakeDetails,_id,deliveryTime}
+      {shippingPrice,taxPrice,totalPrice,totalOrderedProducts,allItemsTotal,customerAddress,customerName,
+        customerPhone,customerEmail,customerMessage,
+        dateOfDelivery,deliveryType,cakeDetails,_id,deliveryTime}
       ),
     headers: {
       'Content-Type': 'application/json'
     }
   });
   const result=await response.json();
+  console.log(result);
+
+
+
   if(result.result==null||result.result==""||result.result==undefined){
-    swal("Order Not Confirmed", "", "Error");
+    swal("Order Not Confirmed", ":(", "Error");
   }
+
+
    else{
 swal({
   title: "Yay",
   text: "Order Confirmed!",
   icon: "success",
   button: "OK",
-
-
 })
    }
   }
@@ -189,12 +191,72 @@ swal({
  catch (error) {
   console.log(error);
 }
-          //  .then((result) => {
-          //    result.json().then((resp) => {
-          //      console.warn(resp)
-          //      getData()
-          //    })
-          //  })
+         
+
+try {
+  const responsee = await fetch(`/order/saveConfirmedOrder`, {
+    method: 'POST',
+    body: JSON.stringify(
+      {
+        shippingPrice,taxPrice,totalPrice,totalOrderedProducts,allItemsTotal,customerAddress,customerName,
+        customerPhone,customerEmail,customerMessage,dateOfDelivery,deliveryType,_id,deliveryTime
+      }
+      ),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const resultt=await responsee.json();
+  console.log(resultt);
+  if(resultt.result==null||resultt.result==""||resultt.result==undefined){
+    swal("Order already accepted", ":(", "Success");
+  }
+   else{
+swal({
+  title: "Yay",
+  text: "Added to order lists!",
+  icon: "success",
+  button: "OK",
+})
+   }
+  }
+
+ catch (error) {
+  console.log(error);
+}
+
+
+const trackingresponse= await fetch("/order/saveTrackingDetails", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    _id,
+    deliveryTime,customerName,
+    customerPhone,customerEmail,dateOfDelivery
+  })
+});
+
+const data=await trackingresponse.json();
+console.log(data);
+
+  if(data.result==null||data.result==""||data.result==undefined){
+    swal("Tracking Details Not Saved", ":(", "Error");
+  }
+  else{
+    swal({
+      title: "Tracking Details Saved",
+      text: "",
+      icon: "success",
+      button: "OK",
+  
+    })
+  }
+
+
+
+
          }
         
       

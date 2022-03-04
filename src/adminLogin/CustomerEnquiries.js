@@ -2,6 +2,7 @@ import react, { useState,useEffect } from 'react';
 import { Button ,Modal,Form, FormControl, InputGroup} from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 import $ from 'jquery';
+import swal from 'sweetalert';
 
 const CustomerEnquiries = () => {
 
@@ -47,10 +48,15 @@ const sendEmail=async(e)=>{
   const result=await response.json();
   console.log(result);
   if(result.result==null || result.result=="" || result.result==undefined){
-    alert('Invalid Credentials');
+    swal("Failed", "Email not sent", "error");
   }
   else{
-    alert('Email Sent Successfully');
+   swal({
+    title: "Success",
+    text: "Email sent",
+    icon: "success",
+
+   })
   }
 }
 
@@ -151,12 +157,12 @@ const sendEmail=async(e)=>{
 
 <select id="country" onChange={GetSelectedText}>
 {enquiry.map(enquiry => (
-    <option name='email' value={emailEnquiry.email} onChange={handleInputChange} >{enquiry.email}</option>
+    <option  >{enquiry.email}</option>
 ))
 }
 </select>
 {/* <input type="text" name='email' value={emailEnquiry.email} disabled onChange={handleInputChange} /> */}
-    <input type="textbox"  name='email' value={emailEnquiry.email}  onChange={handleInputChange} />
+    <input type="text"  name='email' value={emailEnquiry.email}  onChange={handleInputChange} />
 <span id='result' ></span>
 
 

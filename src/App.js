@@ -23,6 +23,8 @@ import EditCake from './adminLogin/EditCake.js';
 import Orders from './adminLogin/Orders.js';
 import Todo from './adminLogin/Todo.js';
 import OrderList from './adminLogin/OrderList.js';
+import OrderTracking from './components/OrderTracking.js';
+import AdminOrderStatus from './adminLogin/AdminOrderStatus.js';
 function App() {
 
   //get the cart items from local storage
@@ -156,6 +158,15 @@ function App() {
 <Route path="/orderlist">
   <OrderList/>
   </Route>
+
+<Route path="/orderTracker">
+<OrderTracking/>
+</Route>
+
+<Route path="/adminOrderStatus">
+<AdminOrderStatus/>
+</Route>
+
     </div>
   );
 }
