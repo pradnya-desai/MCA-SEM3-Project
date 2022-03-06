@@ -1,12 +1,23 @@
 import React, { useEffect,useState } from 'react'
-
+import swal from 'sweetalert';
 const AdminOrderStatus = () => {
 
     const [acceptedOrders, setAcceptedOrders] = useState([])
-    // const[_id,setOrderId]=useState(null);
-    // const [customerName, setCustomerName] = useState('')
-    // const [customerPhone, setCustomerPhone] = useState('')
-    // const [customerEmail, setCustomerEmail] = useState('')
+
+
+
+    const[_id,setId]=useState(null);
+    const [customerName, setCustomerName] = useState('')
+    const [customerPhone, setCustomerPhone] = useState('')
+    const [customerEmail, setCustomerEmail] = useState('')
+    const [dateOfDelivery, setDateOfDelivery] = useState('')
+    const [deliveryTime, setDeliveryTime] = useState('')
+    const [orderAccepted, setOrderAccepted] = useState('')
+    const [beingBaked, setBeingBaked] = useState('')
+    const [outForDelivery, setOutForDelivery] = useState('')
+    const [delivered, setDelivered] = useState('')
+    const [orderDate, setOrderDate] = useState('')
+
 
 
 useEffect(() => {
@@ -34,18 +45,46 @@ AcceptedOrdersData=[];
 
 
 function selectOrder(_id,customerName,customerPhone,customerEmail,dateOfDelivery,
-    deliveryTime,orderAccepted,beingBaked,outForDelivery,orderDate){
-// setOrderId(_id);
-// setCustomerName(customerName);
-// setCustomerPhone(customerPhone);
-// setCustomerEmail(customerEmail);
-// setDateOfDelivery(dateOfDelivery);
-// setDeliveryTime(deliveryTime);
-// setOrderAccepted(orderAccepted);
-// setBeingBaked(beingBaked);
-// setOutForDelivery(outForDelivery);
-// setOrderDate(orderDate);
+    deliveryTime,orderAccepted,beingBaked,outForDelivery,delivered,orderDate){
+setId(_id);
+setCustomerName(customerName);
+setCustomerPhone(customerPhone);
+setCustomerEmail(customerEmail);
+setDateOfDelivery(dateOfDelivery);
+setDeliveryTime(deliveryTime);
+setOrderAccepted(orderAccepted);
+setBeingBaked(beingBaked);
+setOutForDelivery(outForDelivery);
+setDelivered(delivered);
+setOrderDate(orderDate);
 
+}
+
+
+async function updateTrackingStatus(){
+    const response=await fetch(`/order/updateTrackingStatus`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          _id,
+          orderAccepted,
+            beingBaked,
+            outForDelivery,
+            delivered
+          
+
+        })
+    })
+    const data=await response.json();
+    console.log(data);
+    swal({
+        title: "Order tracking Updated",
+        text: "Order tracking updated successfully",
+        icon: "success",
+        button: "OK",
+        });
 }
 
   return (
@@ -121,8 +160,42 @@ function selectOrder(_id,customerName,customerPhone,customerEmail,dateOfDelivery
             
     </tbody>
 </table> 
+
+
+<br/><br/>
+<div>
+
+        <br/><br/>
+        <br/><br/>
+        <div className="container">
+        <div className="row input-container">
+        <input type="text" disabled value={_id} onChange={(e) =>{setId(e.target.value)}} />
+        <br/><br/> <input disabled type="text" value={customerName} onChange={(e)=>{setCustomerName(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={customerPhone} onChange={(e)=>{setCustomerPhone(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={customerEmail}  onChange={(e)=>{setCustomerEmail(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={dateOfDelivery} onChange={(e)=>{setDateOfDelivery(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={deliveryTime} onChange={(e)=>{setDeliveryTime(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={orderAccepted} onChange={(e)=>{setOrderAccepted(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={beingBaked} onChange={(e)=>{setBeingBaked(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={outForDelivery} onChange={(e)=>{setOutForDelivery(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={delivered} onChange={(e)=>{setDelivered(e.target.value)}} /> <br /><br />
+        <input type="text" disabled value={orderDate} onChange={(e)=>{setOrderDate(e.target.value)}} /> <br /><br />
+
+        </div>
+        </div>
+        <button className="btn btn-success" onClick={updateTrackingStatus} >Update Tracking Status</button>  
+      </div>
+
+
 </div>
   )
 }
 
 export default AdminOrderStatus
+
+/// if (orderAccepted === "true") {
+//   if(frontEndBeingBakedValue===beingBakedDBValue){
+    //{
+    //beingBakedDBValue='true';
+    //}
+//}

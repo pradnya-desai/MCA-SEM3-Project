@@ -1319,13 +1319,13 @@ background-color: #8566aa;
 }
 .dot.three {
   left: 490px;
-  background: #bbb;
-  color: #ffd800;
+  background: #0C84D9;
+  color: white;
 }
 .dot.four {
   left: 700px;
-  background: #bbb;
-  color: #ffd800;
+  background: #0C84D9;
+  color: white;
 }
 .progress-bar {
   position: absolute;
@@ -1340,9 +1340,13 @@ background-color: #8566aa;
 }
 .progress-bar.second {
   left: 37%;
+  background: #0C84D9;
+
 }
 .progress-bar.third {
   left: 64%;
+  background: #0C84D9;
+
 }
 .message {
   position: absolute;
