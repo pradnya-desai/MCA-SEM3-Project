@@ -4,6 +4,7 @@ import {Line} from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { useState,useEffect } from 'react';
 import { Chart }  from 'react-chartjs-2'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -17,7 +18,8 @@ import {
     } from 'chart.js';
  
 
-  
+ import $ from 'jquery';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const Sales = () => {
 
@@ -42,7 +44,19 @@ const Sales = () => {
 // })();
 // }, []);
 
-
+$(document).ready(function(){ 
+  $(window).scroll(function(){ 
+      if ($(this).scrollTop() > 100) { 
+          $('#scroll').fadeIn(); 
+      } else { 
+          $('#scroll').fadeOut(); 
+      } 
+  }); 
+  $('#scroll').click(function(){ 
+      $("html, body").animate({ scrollTop: 0 }, 600); 
+      return false; 
+  }); 
+});
 
 const [lessOrderData, setLessThanData] = useState([])
 // useEffect(() => {
@@ -63,24 +77,7 @@ const [lessOrderData, setLessThanData] = useState([])
 // }, []);
 
 
-    const data = {
-        labels: ["5","10","15","20","25","30","35","40","45","50","55"],
-        datasets: [
-          {
-            label: "First dataset",
-            data: [1,2,3,5,6,7,8,9],
-            fill: true,
-            backgroundColor: "rgba(75,192,192,0.2)",
-            borderColor: "rgba(75,192,192,1)"
-          },
-          {
-            label: "Second dataset",
-            data: [`${greaterOrderData}`],
-            fill: false,
-            borderColor: "#742774"
-          }
-        ]
-      };
+ 
 
     // Chart.register(CategoryScale)
      ChartJS.register(
@@ -188,6 +185,24 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
                   })();
               }, [])
       
+              const [orderProfit, setProfitCount] = useState([]);
+
+              useEffect(() => {
+                (async () => {
+                  var ProfitData;
+                  try {
+                    const response = await fetch("/order/getOrder");
+                    ProfitData = await response.json();
+                    console.log(ProfitData);
+                  } catch (error) {
+                    console.log(error);
+                    ProfitData = [];
+                  }
+                  setProfitCount(ProfitData.result.totalPriceAdd);
+                })();
+                  }, []);
+                  console.log(typeof orderProfit);
+                  //check the datatype of orderProfit 
 
 
      const Piedata = {
@@ -277,10 +292,28 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
         //           }
         //     ]
         //   };
-       
+        const data = {
+          labels: ["5","10","15","20","25","30","35","40","45","50","55"],
+          datasets: [
+            {
+              label: "First dataset",
+              data: [1,2,3,5,6,7,8,9],
+              fill: true,
+              backgroundColor: "rgba(75,192,192,0.2)",
+              borderColor: "rgba(75,192,192,1)"
+            },
+            {
+              label: "Second dataset",
+              data: [{orderProfit}],
+              fill: false,
+              borderColor: "#742774"
+            }
+          ]
+        };
         
     return (
         <div className="container">
+          <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
 
         <div>
             <h1>Sales</h1>

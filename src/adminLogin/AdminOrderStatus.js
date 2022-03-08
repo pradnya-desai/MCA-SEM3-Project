@@ -1,7 +1,25 @@
 import React, { useEffect,useState } from 'react'
 import swal from 'sweetalert';
+import $ from 'jquery';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faBirthdayCake
+  } from "@fortawesome/free-solid-svg-icons";
 const AdminOrderStatus = () => {
-
+    $(document).ready(function(){ 
+        $(window).scroll(function(){ 
+            if ($(this).scrollTop() > 100) { 
+                $('#scroll').fadeIn(); 
+            } else { 
+                $('#scroll').fadeOut(); 
+            } 
+        }); 
+        $('#scroll').click(function(){ 
+            $("html, body").animate({ scrollTop: 0 }, 600); 
+            return false; 
+        }); 
+      });
     const [acceptedOrders, setAcceptedOrders] = useState([])
 
 
@@ -86,10 +104,18 @@ async function updateTrackingStatus(){
         button: "OK",
         });
 }
+const filterData = event => {
+    const value = event.target.value.toLowerCase();
+    const filteredUsers = acceptedOrders.filter(user => (`${user.customerName} ${user.customerEmail}`.toLowerCase().includes(value)));
+   setAcceptedOrders(filteredUsers);
+  }
 
   return (
 <div>
     <h2>OrderList</h2>
+    <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
+    <input type="search"  onInput={filterData} placeholder="search order" />
+<br/><br/>
     {/* AcceptedOrdersData.result.trackingDetails[0].beingBaked */}
     <table border="5" className="table table-striped bg-light">
     <thead>

@@ -9,7 +9,7 @@ const { cartItems } = props;
 
   return (
     <div>
-      <div className="shipping-container">
+      {/* <div className="shipping-container">
 
       <div class="container" style={{ paddingTop: "-5px" }}>
       <Breadcrumb>
@@ -51,9 +51,9 @@ const { cartItems } = props;
                 value="India"
                 className="contact-input"
                 required
-              />
+              /> */}
               {/* <label>Name</label>  */}
-            </div>
+            {/* </div>
           </div>
           <div class="col-md-6 col-sm-12">
             <div class="styled-input1">
@@ -64,9 +64,9 @@ const { cartItems } = props;
                 value="Maharashtra"
                 className="contact-input"
                 required
-              />
+              /> */}
               {/* <label>State</label>  */}
-            </div>
+            {/* </div>
           </div>
           <div class="col-md-6 col-sm-12">
             <div class="styled-input1" style={{ float: "right" }}>
@@ -77,9 +77,9 @@ const { cartItems } = props;
                 value="Pune"
                 className="contact-input"
                 required
-              />
+              /> */}
               {/* <label>City</label>  */}
-            </div>
+            {/* </div>
           </div>
           <div class="col-xs-12">
             <div class="styled-input1 wide">
@@ -101,14 +101,14 @@ const { cartItems } = props;
               <input type="text" className="contact-input" required />
               <label><br/>Enter Your Area Pincode</label>
             </div>
-          </div>
+          </div> */}
           {/* <div class="col-xs-12">
             <div class="styled-input1 wide">
               <textarea required></textarea>
               <label>Message</label>
             </div>
           </div> */}
-          <div class="col-xs-12">
+          {/* <div class="col-xs-12">
             <div class="btn-lrg submit-btn">Place Order</div>
           </div>
         </div>
@@ -116,7 +116,7 @@ const { cartItems } = props;
 
 <div className="shipping-cart-items">
 <h4>Shipping Price</h4>
-<p style={{backgroundColor:"black"}}>{cartItems}</p>
+<p style={{backgroundColor:"black"}}>{cartItems}</p> */}
 {/* <h4>{totalPrice}</h4> */}
 
 
@@ -124,8 +124,10 @@ const { cartItems } = props;
 
 
 
-</div>
-</div>
+{/* </div>
+</div> */}
+
+
 
 
     </div>
@@ -133,3 +135,57 @@ const { cartItems } = props;
 };
 
 export default CustomerInformation;
+
+
+
+
+// const xlsx = require('xlsx');
+// const path = require('path');
+// const exportExcel = 
+//(data, workSheetColumnNames, workSheetName, filePath) => {
+//     const workBook = xlsx.utils.book_new();
+                     
+//     const workSheetData 
+//          workSheetColumnNames,
+//          ... data
+//     ];
+//      const workSheet = xlsx.utils.aoa_to_sheet (workSheetData);
+//     xlsx.utils.book_append_sheet (workBook, workSheet, workSheetName);
+//     xlsx.writeFile(workBook, path.resolve(filePath));
+                       
+// }
+// const exportUsersToExcel = 
+//(users, workSheetColumnNames, workSheetName, filePath) => {
+//     const data = users.map(user => {
+//          return [user.id, user.name, user.age];
+//     });
+//     exportExcel(data, workSheetColumnNames, workSheetName, filePath);
+
+
+// module.exports = exportUsersToExcel;
+// const workSheetColumnName [ 
+//     "ID",
+//      "Name",
+//     "Age"
+// const workSheetName = 'Users'; 
+// const filePath = './outputFiles/excel-from-js.xlsx';
+// exportUsersTOExcel(users, workSheetColumnName, workSheetName, filePath);
+
+
+
+
+
+
+// const exportUsersToExcel = require('./exportService');
+// const users = [
+//     {
+//         id: 0,
+//         name: 'Peter',
+//         age: 31
+//     },
+//     {
+//          id: 1,
+//         name: 'John',
+//         age: 23
+//     }
+// );

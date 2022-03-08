@@ -3,7 +3,8 @@ import { Button ,Modal,Form, FormControl, InputGroup} from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 import $ from 'jquery';
 import swal from 'sweetalert';
-
+import path from 'path';
+import * as xlsx from 'xlsx';
 const CustomerEnquiries = () => {
 
     const [show, setShow] = useState(false);
@@ -81,35 +82,42 @@ const sendEmail=async(e)=>{
             })();
           }, []);
 
-
+// using xlsx save the enquiries in the excel file and save that file on the desktop using path
+const saveExcel=()=>{
+  var wb = xlsx.utils.book_new();
+  var ws = xlsx.utils.aoa_to_sheet([
+//save the enquiries in the excel file
+    ["ID", "Name", "Email", "Phone", "Message"],
+    ...enquiry.map(enquiry => [
+      enquiry._id,
+      enquiry.cname,
+      enquiry.email,
+      enquiry.phone,
+      enquiry.message,
+    
+    ])
+  ]);
+  xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
+  xlsx.writeFile(wb, path.resolve("./cakeOrderingSystem/enquiries.xlsx"));
+}
 
           const filterData = event => {
             const value = event.target.value.toLowerCase();
             const filteredUsers = enquiry.filter(user => (`${user.cname} ${user.email}`.toLowerCase().includes(value)));
             setEnquiries(filteredUsers);
           }
-          // const sendEmail = (e) => {
-          //   e.preventDefault();
-        
-          //   emailjs.sendForm('gmail', 'template_3s7slla',e.target, 'user_wqU06aNrWMVEJa5fyD7F1')
-          //     .then((result) => {
-          //         console.log(result.text);
-          //     }, (error) => {
-          //         console.log(error.text);
-          //     });
-          // };
-
+       
 
 
     return (
         <div>
-        <h1>Customer Enquiries</h1>
-    
-  <br/><br/>
-  
+<br/>
+<h2>Customer Enquiries</h2>   <br/>
+<button style={{float:"left"}} className='btn btn-dark' onClick={saveExcel}>Save To Excel</button>
 
         {/* <Button type='submit' onSubmit={onSubmit} style={{height:"4rem", fontSize:"1.2rem"}} variant="primary">Show All Enquiries</Button> */}
 <input type="search"  onInput={filterData} placeholder="search customer" />
+<br/><br/>
         <table border="5" className="table table-striped bg-light" >
         <thead>
             <tr>

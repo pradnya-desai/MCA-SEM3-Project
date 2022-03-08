@@ -1,6 +1,14 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import swal from "sweetalert";
+import $ from 'jquery';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faBirthdayCake
+  } from "@fortawesome/free-solid-svg-icons";
+  import path from 'path';
+import * as xlsx from 'xlsx';
 const EditCake=()=>{
 
     const [cakes, setCakes] = useState([])
@@ -107,13 +115,58 @@ async function deleteCake(_id) {
   }
 catch(error){
 console.log(error)
+}}
+
+
+$(document).ready(function(){ 
+  $(window).scroll(function(){ 
+      if ($(this).scrollTop() > 100) { 
+          $('#scroll').fadeIn(); 
+      } else { 
+          $('#scroll').fadeOut(); 
+      } 
+  }); 
+  $('#scroll').click(function(){ 
+      $("html, body").animate({ scrollTop: 0 }, 600); 
+      return false; 
+  }); 
+});
+
+const filterData = event => {
+  const value = event.target.value.toLowerCase();
+  const filteredUsers = cakes.filter(user => (`${user.cname} ${user.price}`.toLowerCase().includes(value)));
+  setCakes(filteredUsers);
+}
+
+const saveExcel=()=>{
+  var wb = xlsx.utils.book_new();
+  var ws = xlsx.utils.aoa_to_sheet([
+//save the enquiries in the excel file
+    ["ID", "Cake Name", "Image", "Price", "Caegory"],
+    ...cakes.map(cakes => [
+      cakes._id,
+      cakes.cname,
+      cakes.image,
+      cakes.price,
+      cakes.category,
+    
+    ])
+  ]);
+  xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
+  xlsx.writeFile(wb, path.resolve("./cakeOrderingSystem/cakes.xlsx"));
 }
 
 
 
-}
 return(
     <div>
+      <br/>
+      <button style={{float:"left"}} className='btn btn-dark' onClick={saveExcel}>Save To Excel</button>
+
+                <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
+                <br/>
+                <input type="search"  onInput={filterData} placeholder="search cakes" />
+                <br/>  <br/>
  <table border="5" className="table table-striped bg-light">
  <thead>
 

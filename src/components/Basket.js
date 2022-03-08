@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
+import $ from "jquery";
 import {
   faPlus,
   faMinus,
-  faShoppingBag,
+  faBirthdayCake,
   faRupeeSign,
   faShoppingBasket,
 } from "@fortawesome/free-solid-svg-icons";
@@ -522,9 +523,23 @@ const handleInputChangeOrderInfo=(e)=>{
 //     }); 
 //   }
 // }
-
+$(document).ready(function(){ 
+  $(window).scroll(function(){ 
+      if ($(this).scrollTop() > 100) { 
+          $('#scroll').fadeIn(); 
+      } else { 
+          $('#scroll').fadeOut(); 
+      } 
+  }); 
+  $('#scroll').click(function(){ 
+      $("html, body").animate({ scrollTop: 0 }, 600); 
+      return false; 
+  }); 
+});
   return (
     <section id="cart-section">
+
+<a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faBirthdayCake}/></a>
       <aside>
         <h2>Cart Items</h2>
         <div>
@@ -1125,7 +1140,7 @@ const handleInputChangeOrderInfo=(e)=>{
                       <div>Items Price</div>
                       <div>
                         <FontAwesomeIcon icon={faRupeeSign} /> {itemsPrice}
-                        <input type="text" hidden disabled onChange={handleInputChangeOrderInfo} name="allItemsPrice" value={itemsPrice} disabled />
+                        <input type="text" hidden onChange={handleInputChangeOrderInfo} name="allItemsPrice" value={itemsPrice} disabled />
                       </div>
                       <div className="row">
                         {/* <div className="col-2">Tax Price</div> */}
@@ -1483,7 +1498,7 @@ const handleInputChangeOrderInfo=(e)=>{
                                     <strong>
                                       <FontAwesomeIcon icon={faRupeeSign} />{" "}
                                       {totalPrice.toFixed(2) - 20}
-                                      <input hidden disabled type="text" name="orderTotalPrice" onChange={handleInputChangeOrderInfo} value={totalPrice.toFixed(2)-20} onChange={handleInputChangeOrderInfo} />
+                                      <input hidden disabled type="text" name="orderTotalPrice" onChange={handleInputChangeOrderInfo} value={totalPrice.toFixed(2)-20}  />
                                     </strong>
                                   </span>
                                 </div>

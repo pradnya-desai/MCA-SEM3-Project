@@ -32,7 +32,8 @@
     "react-select": "^5.2.2",
     "styled-components": "^5.3.3",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "xlsx": "^0.18.3"
   },
   "scripts": {
     "start": "react-scripts start",

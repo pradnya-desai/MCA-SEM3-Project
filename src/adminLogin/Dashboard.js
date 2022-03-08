@@ -1,15 +1,30 @@
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowUp,
+  faBirthdayCake,
   faBook,
   faBookReader,
+  faCartPlus,
   faChartBar,
+  faCheck,
+  faComments,
+  faCross,
+  faCrosshairs,
   faDigitalTachograph,
   faGraduationCap,
+  faHome,
+  faMinusCircle,
   faMoneyBill,
+  faMoneyBillAlt,
+  faQuestion,
+  faRupeeSign,
+  faShippingFast,
   faShoppingBag,
+  faStar,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import $ from "jquery";
 import React from "react";
 import { faDelicious } from "@fortawesome/free-brands-svg-icons";
 import Sidebar from "./Sidebar.js";
@@ -20,6 +35,25 @@ const Dashboard = () => {
   const [orderCount, setOrderCount] = useState([]);
   const [orderProfit, setProfitCount] = useState([]);
   const [homeDeliveryCount, setHomeDeliveryCount] = useState([]);
+  const [averageRating, setAverageRating] = useState([]);
+
+useEffect(() => {
+  (async()=>{
+    var ratingData;
+    try{
+      const response=await fetch("/rating/getAverageRating");
+      ratingData=await response.json();
+      console.log(ratingData);
+    }
+    catch(e){
+      console.log(e);
+    ratingData=[];
+    }
+    setAverageRating(ratingData.result.averageRatingValue);
+    console.log(ratingData);
+  })();
+  },[]);
+
   useEffect(() => {
     (async () => {
       var userData;
@@ -202,17 +236,31 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
                 })();
 
                 }, []);
-
+                $(document).ready(function(){ 
+                  $(window).scroll(function(){ 
+                      if ($(this).scrollTop() > 100) { 
+                          $('#scroll').fadeIn(); 
+                      } else { 
+                          $('#scroll').fadeOut(); 
+                      } 
+                  }); 
+                  $('#scroll').click(function(){ 
+                      $("html, body").animate({ scrollTop: 0 }, 600); 
+                      return false; 
+                  }); 
+                });
 
   return (
+
     <div>
+          <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
 
       <div class="card-holder">
       <button onClick={getOrders} type="submit"
           style={{ background:"transparent", border:"none"}}>
         <section class="card-count card--01">
           <h1 class="card__heading">Orders</h1>
-          <p  style={{fontWeight:"bolder"}} class="card__text">{orderCount}</p>
+          <p  style={{fontWeight:"bolder"}} class="card__text">{orderCount} <FontAwesomeIcon icon={faCartPlus}/></p>
         </section>
         </button>
         <span class="card-shadow card-shadow--01"></span>
@@ -224,7 +272,7 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
         <section class="card-count card--03">
   
           <h1 class="card__heading">Deliveries</h1>
-          <p  style={{fontWeight:"bolder"}} class="card__text">{homeDeliveryCount}</p>
+          <p  style={{fontWeight:"bolder"}} class="card__text">{homeDeliveryCount} <FontAwesomeIcon icon={faShippingFast}/></p>
         </section>
         </button>
         <span class="card-shadow card-shadow--03"></span>
@@ -235,7 +283,7 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
         <section class="card-count card--04">
          
          <h1 class="card__heading">Enquiries</h1>
-          <p  style={{fontWeight:"bolder"}} class="card__text">{enquiryCount}</p>
+          <p  style={{fontWeight:"bolder"}} class="card__text">{enquiryCount} <FontAwesomeIcon icon={faComments}/></p>
         
         </section>
         </button>
@@ -246,7 +294,7 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
           style={{ background:"transparent", border:"none"}}>
         <section class="card-count card--02">
           <h1 class="card__heading">Profit</h1>
-          <p  style={{fontWeight:"bolder"}} class="card__text">{orderProfit}</p>
+          <p  style={{fontWeight:"bolder"}} class="card__text">{orderProfit} <FontAwesomeIcon icon={faRupeeSign}/></p>
         </section>
         </button>
         <span class="card-shadow card-shadow--02"></span>
@@ -256,7 +304,7 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
           style={{ background:"transparent", border:"none"}}>
         <section class="card-count card--05">
           <h1 class="card__heading">Cakes for Sale</h1>
-          <p style={{fontWeight:"bolder"}} class="card__text">{cakeCount}</p>
+          <p style={{fontWeight:"bolder"}} class="card__text">{cakeCount} <FontAwesomeIcon icon={faBirthdayCake}/> </p>
         </section>
         </button>
         <span class="card-shadow card-shadow--05"></span>
@@ -267,7 +315,7 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
           style={{ background:"transparent", border:"none"}}>
         <section class="card-count card--07">
           <h1 class="card__heading">Rejected Orders</h1>
-          <p style={{fontWeight:"bolder"}} class="card__text">{getDeletedOrdersCount}</p>
+          <p style={{fontWeight:"bolder"}} class="card__text">{getDeletedOrdersCount}  <FontAwesomeIcon icon={faMinusCircle}/>   </p>
         </section>
         </button>
         <span class="card-shadow card-shadow--07"></span>
@@ -277,10 +325,20 @@ const [getAcceptedOrdersCount, setAcceptedOrdersCount] = useState([]);
           style={{ background:"transparent", border:"none"}}>
         <section class="card-count card--06">
           <h1 class="card__heading">Accepted Orders</h1>
-          <p style={{fontWeight:"bolder"}} class="card__text">{getAcceptedOrdersCount}</p>
+          <p style={{fontWeight:"bolder"}} class="card__text">{getAcceptedOrdersCount}  <FontAwesomeIcon icon={faCheck}/></p>
         </section>
         </button>
         <span class="card-shadow card-shadow--06"></span>
+      </div>
+      <div class="card-holder">
+      <button  type="submit"
+          style={{ background:"transparent", border:"none"}}>
+        <section class="card-count card--08">
+          <h1 class="card__heading">Customer Average Rating</h1>
+          <p style={{fontWeight:"bolder"}} class="card__text">{averageRating}<FontAwesomeIcon icon={faStar}/></p>
+        </section>
+        </button>
+        <span class="card-shadow card-shadow--08"></span>
       </div>
       <table className="table table-striped bg-light" >
         <thead>

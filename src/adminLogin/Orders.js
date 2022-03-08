@@ -1,9 +1,28 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import swal from 'sweetalert';
+import $ from 'jquery';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faBirthdayCake
+  } from "@fortawesome/free-solid-svg-icons";
 const Orders = () => {
 
-
+  $(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 100) { 
+            $('#scroll').fadeIn(); 
+        } else { 
+            $('#scroll').fadeOut(); 
+        } 
+    }); 
+    $('#scroll').click(function(){ 
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
+  });
+  
     const[orders,setOrders]=useState([])
 
     const[_id,setOrderId]=useState(null)
@@ -18,6 +37,7 @@ const Orders = () => {
     const[customerName,setCustomerName]=useState("")
     const[customerPhone,setCustomerPhone]=useState("")
     const[customerEmail,setCustomerEmail]=useState("")
+    const [customerPinCode,setCustomerPinCode]=useState("")
     const[customerMessage,setCustomerMessage]=useState("")
     const[dateOfDelivery,setDateOfDelivery]=useState("")
     const[deliveryType,setDeliveryType]=useState("") 
@@ -70,6 +90,7 @@ setCustomerAddress(data[0].customerAddress);
 setCustomerName(data[0].customerName);
 setCustomerPhone(data[0].customerPhone);
 setCustomerEmail(data[0].customerEmail);
+setCustomerPinCode(data[0].customerPinCode);
 setCustomerMessage(data[0].customerMessage);
 setDateOfDelivery(data[0].dateOfDelivery);
 setDeliveryType(data[0].deliveryType);          
@@ -131,7 +152,7 @@ setDeliveryType(data[0].deliveryType);
         }
 
          function selectOrder(_id,shippingPrice,taxPrice,totalPrice,totalOrderedProducts,
-          allItemsTotal,customerAddress,customerName,customerPhone,customerEmail,customerMessage,
+          allItemsTotal,customerAddress,customerName,customerPhone,customerEmail,customerPinCode,customerMessage,
           dateOfDelivery,deliveryType,deliveryTime) 
           {
 
@@ -147,6 +168,7 @@ setDeliveryType(data[0].deliveryType);
             setCustomerName(customerName);
             setCustomerPhone(customerPhone);
             setCustomerEmail(customerEmail);
+            setCustomerPinCode(customerPinCode);
             setCustomerMessage(customerMessage);
             setDateOfDelivery(dateOfDelivery);
             setDeliveryType(deliveryType);
@@ -161,7 +183,7 @@ try {
     method: 'POST',
     body: JSON.stringify(
       {shippingPrice,taxPrice,totalPrice,totalOrderedProducts,allItemsTotal,customerAddress,customerName,
-        customerPhone,customerEmail,customerMessage,
+        customerPhone,customerEmail,customerPinCode,customerMessage,
         dateOfDelivery,deliveryType,cakeDetails,_id,deliveryTime}
       ),
     headers: {
@@ -199,7 +221,7 @@ try {
     body: JSON.stringify(
       {
         shippingPrice,taxPrice,totalPrice,totalOrderedProducts,allItemsTotal,customerAddress,customerName,
-        customerPhone,customerEmail,customerMessage,dateOfDelivery,deliveryType,_id,deliveryTime
+        customerPhone,customerEmail,customerPinCode,customerMessage,dateOfDelivery,deliveryType,_id,deliveryTime
       }
       ),
     headers: {
@@ -234,7 +256,9 @@ const trackingresponse= await fetch("/order/saveTrackingDetails", {
   body: JSON.stringify({
     _id,
     deliveryTime,customerName,
-    customerPhone,customerEmail,dateOfDelivery
+    customerPhone,customerEmail,dateOfDelivery,
+    customerAddress,customerPinCode,totalOrderedProducts,
+    allItemsTotal,taxPrice,totalPrice
   })
 });
 
@@ -272,10 +296,12 @@ console.log(data);
   return (
     <div>
   <h1>Order Details</h1>
-    
-    <br/><br/>
+  <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
+
+    <br/>
     <input type="search"  onInput={filterData} placeholder="search order" />
 
+    <br/><br/>
     <table border="5" className="table table-striped bg-light" >
         <thead>
             <tr>
@@ -291,6 +317,7 @@ console.log(data);
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Customer Name</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Phone</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Email</th>
+            <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Pin Code</th>
             <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Message</th>
 
             {/* <th style={{borderRight: "1px solid #dedede", color:"#fecacc",backgroundColor:"black"}} scope="col">Product Details</th> */}
@@ -325,6 +352,7 @@ console.log(data);
             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.customerName}</td>
             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.customerPhone}</td>
             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.customerEmail}</td>
+            <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.customerPinCode}</td>
             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.customerMessage}</td>
             <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.dateOfDelivery}</td> 
              <td style={{borderRight: "1px solid #dedede", color:"black", fontWeight:"bold"}}>{orders.deliveryType}</td>
@@ -339,7 +367,7 @@ console.log(data);
                 <td><button className="btn btn-info" onClick={() => selectOrder(orders._id,
                 orders.shippingPrice,orders.taxPrice,orders.totalPrice,orders.totalOrderedProducts,
                 orders.allItemsTotal,orders.customerAddress,orders.customerName,orders.customerPhone,
-                orders.customerEmail,orders.customerMessage,orders.dateOfDelivery,orders.deliveryType
+                orders.customerEmail,orders.customerPinCode,orders.customerMessage,orders.dateOfDelivery,orders.deliveryType
                   
                   )}>Accept Order</button></td>
 
@@ -378,6 +406,7 @@ console.log(data);
 <input type="text" disabled value={customerName} onChange={(e)=>{setCustomerName(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={customerPhone} onChange={(e)=>{setCustomerPhone(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={customerEmail} onChange={(e)=>{setCustomerEmail(e.target.value)}} /> <br /><br />
+<input type="text" disabled value={customerPinCode} onChange={(e)=>{setCustomerPinCode(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={customerMessage} onChange={(e)=>{setCustomerMessage(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={dateOfDelivery} onChange={(e)=>{setDateOfDelivery(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={deliveryType} onChange={(e)=>{setDeliveryType(e.target.value)}} /> <br /><br />

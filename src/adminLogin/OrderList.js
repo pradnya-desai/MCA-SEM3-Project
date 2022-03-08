@@ -1,6 +1,27 @@
 import React, { useEffect,useState } from 'react'
-
+import $ from 'jquery';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowUp,
+  faBirthdayCake
+  } from "@fortawesome/free-solid-svg-icons";
+  import path from 'path';
+  import * as xlsx from 'xlsx';
 const OrderList = () => {
+
+    $(document).ready(function(){ 
+        $(window).scroll(function(){ 
+            if ($(this).scrollTop() > 100) { 
+                $('#scroll').fadeIn(); 
+            } else { 
+                $('#scroll').fadeOut(); 
+            } 
+        }); 
+        $('#scroll').click(function(){ 
+            $("html, body").animate({ scrollTop: 0 }, 600); 
+            return false; 
+        }); 
+      });
 const [orders, setOrders] = useState([])
 useEffect(() => {
     (async () => {
@@ -36,10 +57,76 @@ AcceptedOrdersData=[];
     setAcceptedOrders(AcceptedOrdersData.result.allAcceptedOrders);
     })();
 }, [])
+const saveExcel=()=>{
+    var wb = xlsx.utils.book_new();
+    var ws = xlsx.utils.aoa_to_sheet([
+  //save the enquiries in the excel file
+      ["ID", "Cake Details", "shippingPrice", "taxPrice", "totalPrice","totalOrderedProducts","allItemsTotal","customerAddress",
+      "customerName","customerPhone","customerEmail","customerMessage","dateOfDelivery","deliveryType","orderStatus"  ],
+      ...orders.map(orders => [
+        orders._id,
+        orders.cakeDetails,
+        orders.shippingPrice,
+        orders.taxPrice,
+        orders.totalPrice,
+        orders.totalOrderedProducts,
+        orders.allItemsTotal,
+        orders.customerAddress,
+        orders.customerName,
+        orders.customerPhone,
+        orders.customerEmail,
+        orders.customerMessage,
+        orders.dateOfDelivery,
+        orders.deliveryType,
+        orders.orderStatus,
+      
+      ])
+    ]);
+    xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
+    xlsx.writeFile(wb, path.resolve("./cakeOrderingSystem/rejected-Orders.xlsx"));
+  }
 
+
+  const saveExcel1=()=>{
+    var wb = xlsx.utils.book_new();
+    var ws = xlsx.utils.aoa_to_sheet([
+  //save the enquiries in the excel file
+  ["ID", "Cake Details", "shippingPrice", "taxPrice", "totalPrice","totalOrderedProducts","allItemsTotal","customerAddress",
+  "customerName","customerPhone","customerEmail","customerMessage","dateOfDelivery","deliveryType","orderStatus"  ],
+      ...acceptedOrders.map(acceptedOrders => [
+        acceptedOrders._id,
+        acceptedOrders.cakeDetails,
+        acceptedOrders.shippingPrice,
+        acceptedOrders.taxPrice,
+        acceptedOrders.totalPrice,
+        acceptedOrders.totalOrderedProducts,
+        acceptedOrders.allItemsTotal,
+        acceptedOrders.customerAddress,
+        acceptedOrders.customerName,
+        acceptedOrders.customerPhone,
+        acceptedOrders.customerEmail,
+        acceptedOrders.customerMessage,
+        acceptedOrders.dateOfDelivery,
+        acceptedOrders.deliveryType,
+        acceptedOrders.orderStatus,
+
+
+      
+      ])
+    ]);
+    xlsx.utils.book_append_sheet(wb, ws, "Sheet1");
+    xlsx.writeFile(wb, path.resolve("./cakeOrderingSystem/accepted-orders.xlsx"));
+  }
   return (
       <div>
-    <div>OrderList</div>
+    <h2>OrderList</h2>
+    <button style={{float:"left"}} className='btn btn-dark' onClick={saveExcel}>Save To Excel</button>
+
+    <br/>
+    <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faArrowUp}/></a>
+
+    <br/>
+
     <table border="5" className="table table-striped bg-light">
     <thead>
         <tr>
@@ -97,6 +184,9 @@ AcceptedOrdersData=[];
 </table>
 
 
+<button style={{float:"left"}} className='btn btn-dark' onClick={saveExcel1}>Save To Excel</button>
+
+<br/><br/>
  <table border="5" className="table table-striped bg-light">
     <thead>
         <tr>

@@ -143,11 +143,14 @@ function App() {
 </Route>
 
 <Route path="/manageCake">
+  <Sidebar/>
 <EditCake/>
 
 </Route>
 
 <Route path="/orders">
+<Sidebar/>
+
   <Orders/>
 </Route>
 
@@ -156,6 +159,8 @@ function App() {
 </Route>
 
 <Route path="/orderlist">
+<Sidebar/>
+
   <OrderList/>
   </Route>
 
@@ -164,6 +169,8 @@ function App() {
 </Route>
 
 <Route path="/adminOrderStatus">
+<Sidebar/>
+
 <AdminOrderStatus/>
 </Route>
 

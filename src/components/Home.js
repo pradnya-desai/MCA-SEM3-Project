@@ -2,18 +2,31 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import {
-  faEnvelope,
-  faPhone,
-  faShoppingCart,
-  faUser,
+faBirthdayCake
 } from "@fortawesome/free-solid-svg-icons";
 import visitingcard from "../images/visiting-card-vru.jpg"
 import Footer from './Footer.js';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import $ from 'jquery';
 const Home = () => {
+  $(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 100) { 
+            $('#scroll').fadeIn(); 
+        } else { 
+            $('#scroll').fadeOut(); 
+        } 
+    }); 
+    $('#scroll').click(function(){ 
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
+  });
     return (
         <div>
+          <a href="#" id="scroll" style={{display: "none"}}><FontAwesomeIcon icon={faBirthdayCake}/></a>
+
                   <div class="parallax">
         <div className="discount-bar">
           <p className="blinking">
