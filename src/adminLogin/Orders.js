@@ -82,7 +82,7 @@ console.log(data);
  setTaxPrice(data[0].taxPrice);
  setTotalPrice(data[0].totalPrice);
 
-//setCakeDetails(data[0].cakeDetails);
+setCakeDetails(data[0].cakeDetails);
 setTotalProducts(data[0].totalOrderedProducts);
 
 setAllItemsTotal(data[0].allItemsTotal);
@@ -151,14 +151,15 @@ setDeliveryType(data[0].deliveryType);
 
         }
 
-         function selectOrder(_id,shippingPrice,taxPrice,totalPrice,totalOrderedProducts,
+         function selectOrder(_id,cakeDetails,shippingPrice,taxPrice,totalPrice,totalOrderedProducts,
           allItemsTotal,customerAddress,customerName,customerPhone,customerEmail,customerPinCode,customerMessage,
           dateOfDelivery,deliveryType,deliveryTime) 
           {
-
-
+            
+//extract cakeName from the cakeDetails object and store it in a variable
+   
             setOrderId(_id);
-            //setCakeDetails(cakeDetails);
+            setCakeDetails(cakeDetails);
             setShippingPrice(shippingPrice);
             setTaxPrice(taxPrice);
             setTotalPrice(totalPrice);
@@ -173,7 +174,7 @@ setDeliveryType(data[0].deliveryType);
             setDateOfDelivery(dateOfDelivery);
             setDeliveryType(deliveryType);
             setDeliveryTime(deliveryTime);
-
+console.log(typeof cakeDetails);
           }
 
 
@@ -364,7 +365,7 @@ console.log(data);
               deleteOrder(orders._id,orders.customerEmail,orders.customerName,orders.totalPrice,
               orders.customerPhone,orders.totalOrderedProducts)}>
               Delete Order</button></td>
-                <td><button className="btn btn-info" onClick={() => selectOrder(orders._id,
+                <td><button className="btn btn-info" onClick={() => selectOrder(orders._id,orders.cakeDetails,
                 orders.shippingPrice,orders.taxPrice,orders.totalPrice,orders.totalOrderedProducts,
                 orders.allItemsTotal,orders.customerAddress,orders.customerName,orders.customerPhone,
                 orders.customerEmail,orders.customerPinCode,orders.customerMessage,orders.dateOfDelivery,orders.deliveryType
@@ -382,21 +383,23 @@ console.log(data);
 <div className="container">
 <div className="row input-container">
 <input type="text" disabled value={_id} onChange={(e) =>{setOrderId(e.target.value)}} />
-{/* {orders.map((orders,i) => (
-            <div key={i}> 
-                {orders.cakeDetails.map((cake,i) => (
+{/* {orders.map((orders,i) => ( */}
+            {/* <div> 
+                {cakeDetails.map((cake,i) => (
                 <div key={i}>
                   <input type="text" value={cake.cakeName} />
                   <input type="text" value={cake.cakeQuantity} />
                   <input type="text" value={cake.cakePrice}/>
                 </div>
               ))}
-         </div>
-            ))} */}
-     
+         </div> */}
+            {/* ))} */}
+     {/* <input type="text" disabled value={cakeName} onChange={(e) =>{setCakeName(e.target.value)}} />  */}
+    
+      
                 {/* <input type="text" value={cakeName} onChange={(e) =>{setCakeName(e.target.value)}} /> */}
 
-{/* <br/><br/> <input type="text" disabled value={cakeDetails} onChange={(e)=>{setCakeDetails(e.target.value)}} /> <br /><br /> */}
+<br/><br/> <input type="text" disabled value={cakeDetails} onChange={(e)=>{setCakeDetails(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={shippingPrice} onChange={(e)=>{setShippingPrice(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={taxPrice}  onChange={(e)=>{setTaxPrice(e.target.value)}} /> <br /><br />
 <input type="text" disabled value={totalPrice} onChange={(e)=>{setTotalPrice(e.target.value)}} /> <br /><br />
