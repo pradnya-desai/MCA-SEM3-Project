@@ -18,7 +18,7 @@
 }
 
 a.nav-link {
-  margin-left: 7rem;
+  margin-left: 6rem;
   width: 11rem;
   color: white;
 }
@@ -1599,4 +1599,33 @@ a:hover, a:focus {
   opacity:1;filter:"alpha(opacity=100)";
   -ms-filter:"alpha(opacity=100)";
   color:whitesmoke;
+}
+
+
+
+.icon-bar-tracking{
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar-tracking .tracker-icon {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 30px;
+}
+
+.icon-bar-tracking .tracker-icon:hover {
+  background-color: #3498db;
+}
+
+.tracker-icon{
+  background: black;
+  color: white;
+ 
 }

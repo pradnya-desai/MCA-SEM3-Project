@@ -25,6 +25,7 @@ import Todo from './adminLogin/Todo.js';
 import OrderList from './adminLogin/OrderList.js';
 import OrderTracking from './components/OrderTracking.js';
 import AdminOrderStatus from './adminLogin/AdminOrderStatus.js';
+import MonthlyOrders from './adminLogin/MonthlyOrders';
 function App() {
 
   //get the cart items from local storage
@@ -173,7 +174,10 @@ function App() {
 
 <AdminOrderStatus/>
 </Route>
-
+<Route path="/monthlyOrders">
+  <Sidebar/>
+  <MonthlyOrders/>
+</Route>
     </div>
   );
 }

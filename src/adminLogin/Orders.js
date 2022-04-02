@@ -77,23 +77,23 @@ data=orderDataRecords.result.orderData;
 console.log(data);
 
  setOrders(data);
- setOrderId(data[0]._id);
- setShippingPrice(data[0].shippingPrice);
- setTaxPrice(data[0].taxPrice);
- setTotalPrice(data[0].totalPrice);
+//  setOrderId(data[0]._id);
+//  setShippingPrice(data[0].shippingPrice);
+//  setTaxPrice(data[0].taxPrice);
+//  setTotalPrice(data[0].totalPrice);
 
-setCakeDetails(data[0].cakeDetails);
-setTotalProducts(data[0].totalOrderedProducts);
+// setCakeDetails(data[0].cakeDetails);
+// setTotalProducts(data[0].totalOrderedProducts);
 
-setAllItemsTotal(data[0].allItemsTotal);
-setCustomerAddress(data[0].customerAddress);
-setCustomerName(data[0].customerName);
-setCustomerPhone(data[0].customerPhone);
-setCustomerEmail(data[0].customerEmail);
-setCustomerPinCode(data[0].customerPinCode);
-setCustomerMessage(data[0].customerMessage);
-setDateOfDelivery(data[0].dateOfDelivery);
-setDeliveryType(data[0].deliveryType);          
+// setAllItemsTotal(data[0].allItemsTotal);
+// setCustomerAddress(data[0].customerAddress);
+// setCustomerName(data[0].customerName);
+// setCustomerPhone(data[0].customerPhone);
+// setCustomerEmail(data[0].customerEmail);
+// setCustomerPinCode(data[0].customerPinCode);
+// setCustomerMessage(data[0].customerMessage);
+// setDateOfDelivery(data[0].dateOfDelivery);
+// setDeliveryType(data[0].deliveryType);          
         }
     
 
@@ -157,7 +157,7 @@ setDeliveryType(data[0].deliveryType);
           {
             
 //extract cakeName from the cakeDetails object and store it in a variable
-   
+
             setOrderId(_id);
             setCakeDetails(cakeDetails);
             setShippingPrice(shippingPrice);
@@ -267,7 +267,7 @@ const data=await trackingresponse.json();
 console.log(data);
 
   if(data.result==null||data.result==""||data.result==undefined){
-    swal("Tracking Details Not Saved", ":(", "Error");
+    swal("Tracking Details Exist", ":(", "Error");
   }
   else{
     swal({

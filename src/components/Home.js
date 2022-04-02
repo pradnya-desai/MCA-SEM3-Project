@@ -1,8 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+
+import { faFirstOrder, faInstagram, faJediOrder, faLinkedin, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import {
-faBirthdayCake
+faBirthdayCake, faCartPlus, faLocationArrow, faMapPin, faSearchLocation, faStickyNote, faTruckLoading
 } from "@fortawesome/free-solid-svg-icons";
 import visitingcard from "../images/visiting-card-vru.jpg"
 import Footer from './Footer.js';
@@ -75,6 +76,10 @@ const Home = () => {
 
 
        
+    <div className="icon-bar-tracking">
+      
+      
+    </div>
 
       </section>
 

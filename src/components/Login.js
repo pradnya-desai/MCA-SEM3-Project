@@ -6,6 +6,7 @@ import { useState,useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import swal from 'sweetalert'
 //import axios from "axios"
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -61,6 +62,8 @@ const Login = () => {
 
 		 })
 			window.location.href='/adminlogin';
+			//redirect to admin dashboard page using NavLink
+			// {<NavLink to="/adminlogin"/>}
 	 	}
 		 			 
 		 //(result.result.statusCode==200 && result.result.message==="LOGIN SUCCESSFUL")

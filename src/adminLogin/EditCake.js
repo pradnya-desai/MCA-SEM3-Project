@@ -53,7 +53,7 @@ async function deleteCake(_id) {
 
     })
    const result=await response.json();
-   getData();
+   //getData();
  if(result.result==null||result.result==""||result.result==undefined){
   swal("cake not deleted",  "error");
  }
@@ -66,7 +66,7 @@ async function deleteCake(_id) {
    })
   }
     // .then((result) => {
-    //   result.json().then((resp) => {
+    //   response.json().then((resp) => {
     //     console.warn(resp)
     //     getData()
     //   })
